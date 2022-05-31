@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "trackableappname" . }}-env
+  labels:
+    app: {{ template "appname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  SPECIAL_LEVEL: very
+  SPECIAL_TYPE: charm
+
+  APP_NAME: "{{ .Values.application.laravel.name }}"
+  APP_ENV: "{{ .Values.application.laravel.env }}"
+  APP_KEY: "{{ .Values.application.laravel.secretKey }}"
+  APP_DEBUG: "{{ .Values.application.laravel.debug }}"
+  APP_URL: "https://{{ .Values.service.url }}"
+  FRONT_URL: "https://{{ .Values.service.frontUrl }}"
+
+  LOG_CHANNEL: "stderr"
+  LOG_LEVEL: "debug"
+
+  DB_CONNECTION: "pgsql"
+  DB_HOST: "{{ .Values.application.db.host }}"
+  DB_PORT: "{{ .Values.application.db.port }}"
+  DB_DATABASE: "{{ .Values.application.db.database }}"
+  DB_USERNAME: "{{ .Values.application.db.username }}"
+  DB_PASSWORD: "{{ .Values.application.db.password }}"
+  DB_SCHEMA: "{{ .Values.application.db.schema }}"
+
+  BROADCAST_DRIVER: "log"
+  CACHE_DRIVER: "redis"
+  QUEUE_CONNECTION: "redis"
+  SESSION_DRIVER: "redis"
+  SESSION_LIFETIME: "4320"
+
+  REDIS_HOST: "127.0.0.1"
+  REDIS_PASSWORD: "null"
+  REDIS_PORT: "{{ .Values.application.redis.port }}"
+
+  MAIL_MAILER: "smtp"
+  MAIL_HOST: "smtp.eu.mailgun.org"
+  MAIL_PORT: "587"
+  MAIL_USERNAME: "postmaster@mailgun.websecret.by"
+  MAIL_PASSWORD: "ec8fdcffde3f07e35e793dfbe28a060f-ffefc4e4-eef81e5c"
+  MAIL_ENCRYPTION: "null"
+  MAIL_FROM_ADDRESS: "noreply@websecret.by"
+  MAIL_FROM_NAME: "Showoff"
+
+  S3_KEY: "{{ .Values.application.s3.key }}"
+  S3_SECRET: "{{ .Values.application.s3.secret }}"
+  S3_REGION: "{{ .Values.application.s3.region }}"
+  S3_BUCKET: "{{ .Values.application.s3.bucket }}"
+  S3_ENDPOINT: "{{ .Values.application.s3.endpoint }}"
+
+  IMGPROXY_URL: "{{ .Values.application.imgproxy.url }}"
+  IMGPROXY_KEY: "{{ .Values.application.imgproxy.key }}"
+  IMGPROXY_SALT: "{{ .Values.application.imgproxy.secret }}"
+
+  OPCACHE_VALIDATE_TIMESTAMPS: "0"

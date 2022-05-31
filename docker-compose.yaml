@@ -1,0 +1,90 @@
+version: "3.8"
+
+# Общий драйвер логов
+x-logs:
+  &default-log
+  driver: "json-file"
+  options:
+    # Увеличиваем если не хватает логов
+    max-size: "10k"
+    max-file: "10"
+
+volumes:
+  postgres:
+  minio:
+  redis:
+
+services:
+  nginx:
+    build:
+      context: .
+      target: nginx
+      dockerfile: docker/nginx/Dockerfile
+    logging: *default-log
+    ports:
+    - "80:80"
+    environment:
+      BACK_HOST: back:9000
+    volumes:
+    - ./backend/public:/app/public
+
+  back:
+    user: "${UID:-1000}:${GID:-1000}"
+    build:
+      context: .
+      target: dev
+      dockerfile: ./docker/php/Dockerfile
+    logging: *default-log
+    env_file: backend/.env
+    environment:
+      OPCACHE_VALIDATE_TIMESTAMPS: "1"
+    volumes:
+    - ./backend:/app:cached
+
+  db:
+    image: postgres:14.2-alpine
+    logging: *default-log
+    env_file: ./environments/.env.postgres
+    ports:
+    - "5433:5432"
+    volumes:
+    - postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6.2.7-alpine
+    logging: *default-log
+    volumes:
+    - redis:/data
+
+  front:
+    build:
+      context: .
+      target: dev
+      dockerfile: docker/frontend/Dockerfile
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    env_file: frontend/.env
+
+  imgproxy:
+    image: darthsim/imgproxy:v3.2.1
+    logging: *default-log
+    env_file: ./environments/.env.imgproxy
+    ports:
+    - "8081:8080"
+
+  minio:
+    image: minio/minio:RELEASE.2022-05-03T20-36-08Z
+    logging: *default-log
+    env_file: ./environments/.env.minio
+    ports:
+    - "9001:9001"
+    volumes:
+    - minio:/data
+    command: server /data --console-address ":9001"
+
+#  mailhog:
+#    image: mailhog/mailhog:v1.0.1
+#    logging: *default-log
+#    ports:
+#    - "8025:8025"

@@ -1,0 +1,51 @@
+image:
+  repository: gitlab.example.com/group/project
+  tag: stable
+  secretName:
+application:
+  track: stable
+  migrateCommand:
+  db:
+    host:
+    port: "5432"
+    database: "showoff"
+    username: "postgres"
+    password: "postgres"
+    schema: "public"
+  laravel:
+    secretKey: "base64:0vGM6A1zoTaCezgqjX9+V8Z4D5G9doVmN8c46Wen/nI="
+    # Название проекта
+    name: "showoff"
+    # ! В продакшене должно быть:
+    # env: production
+    # debug: false
+    env: local
+    debug: true
+  s3:
+    bucket: "showoff"
+    endpoint: "https://s3.by.dev.family"
+    key: "AKIAIOSFODNN7AXFMPLE"
+    secret: "wJalrXUtnFEMI/K7MDENG/bPxRfiCY"
+    region: "us-east-1"
+  imgproxy:
+    url: "https://imgproxy.by.dev.family"
+    key: "d27432826ad04cdf22dff776d23c420495551aee64f380827d0266c9c62212fd"
+    secret: "9f0f14e9c9a5ef3d364706c3abac9474afc9f0a929128f280928394f6651d979"
+  features:
+  redis:
+    volumeSuffix: persistent-volume
+    port: 6379
+# Cron jobs
+croncommands:
+#  parsefeedexample:
+#    command: "parse:feed"
+#    schedule: "0 */1 * * *"
+service:
+  enabled: true
+  name: web
+  type: ClusterIP
+  url: https://my.host.com/
+  frontUrl: https://showoff-front-main.stage.dev.family
+  commonName:
+  externalPort: 80
+  internalPort: 80

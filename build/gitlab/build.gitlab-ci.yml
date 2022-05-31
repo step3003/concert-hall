@@ -1,0 +1,31 @@
+build back:
+  stage: build
+  image:
+    name: docker:stable
+    entrypoint: [""]
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - export DOCKER_BUILDKIT=1
+  script:
+    - docker build --target back -t ${CI_REGISTRY_IMAGE}/back:$CI_COMMIT_SHA -t ${CI_REGISTRY_IMAGE}/back:latest -f docker/php/Dockerfile .
+    - docker push ${CI_REGISTRY_IMAGE}/back:$CI_COMMIT_SHA
+    - docker push ${CI_REGISTRY_IMAGE}/back:latest
+  only:
+    - branches
+    - tags
+
+build nginx:
+  stage: build
+  image:
+    name: docker:stable
+    entrypoint: [""]
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - export DOCKER_BUILDKIT=1
+  script:
+    - docker build -t ${CI_REGISTRY_IMAGE}/nginx:$CI_COMMIT_SHA -t ${CI_REGISTRY_IMAGE}/nginx:latest -f docker/nginx/Dockerfile .
+    - docker push ${CI_REGISTRY_IMAGE}/nginx:$CI_COMMIT_SHA
+    - docker push ${CI_REGISTRY_IMAGE}/nginx:latest
+  only:
+    - branches
+    - tags

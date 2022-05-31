@@ -1,0 +1,33 @@
+{{- $dot := . }}
+{{- range $key, $value := .Values.croncommands }}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "trackableappname" $dot }}-{{ $key }}
+  labels:
+    app: {{ template "appname" $dot }}-{{ $key }}
+    chart: "{{ $dot.Chart.Name }}-{{ $dot.Chart.Version | replace "+" "_" }}"
+    release: {{ $dot.Release.Name }}
+    heritage: {{ $dot.Release.Service }}
+    checksum/config: {{ include (print $.Template.BasePath "/env-configmap.yaml") $dot | sha256sum | substr 0 30 }}
+spec:
+  schedule: "{{ $value.schedule }}"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  concurrencyPolicy: "Forbid"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: {{ $dot.Chart.Name }}
+              image: "{{ $dot.Values.image.repository }}/back:{{ $dot.Values.image.tag }}"
+              command: ["php", "artisan", {{ $value.command }}]
+              envFrom:
+                - configMapRef:
+                    name: {{ template "trackableappname" $dot }}-env
+          imagePullSecrets:
+              - name: {{ $dot.Values.image.secretName }}
+          restartPolicy: OnFailure
+---
+{{- end }}

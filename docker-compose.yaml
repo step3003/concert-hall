@@ -25,7 +25,7 @@ services:
     - "80:80"
     environment:
       BACK_HOST: back:9000
-      FRONT_HOST: front:3000
+      FRONT_HOST: front:3100
     volumes:
     - ./backend/public:/app/public
 

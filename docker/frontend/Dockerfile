@@ -1,12 +1,12 @@
 FROM node:16-alpine as dev
 
-WORKDIR /home/node/app
+WORKDIR /app
 
 CMD ["yarn", "dev"]
 
 FROM dev
 
-COPY frontend/package.json fronted/yarn.lock /app/
+COPY frontend/package.json fronted/yarn.lock ./
 
 RUN yarn
 

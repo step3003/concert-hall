@@ -2,16 +2,12 @@ FROM node:16-alpine as dev
 
 WORKDIR /app
 
+COPY frontend/package.json frontend/yarn.lock ./
+
+RUN yarn install --frozen-lockfile
+
+COPY frontend/ .
+
+RUN yarn build 
+
 CMD ["yarn", "dev"]
-
-FROM dev
-
-COPY frontend/package.json fronted/yarn.lock ./
-
-RUN yarn
-
-COPY fronted ./
-
-RUN yarn build
-
-CMD ["yarn", "start"]

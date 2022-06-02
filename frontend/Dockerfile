@@ -6,11 +6,11 @@ CMD ["yarn", "dev"]
 
 FROM dev
 
-COPY frontend/package.json fronted/yarn.lock /app/
+COPY package.json yarn.lock ./
 
 RUN yarn
 
-COPY fronted /app
+COPY . ./
 
 RUN yarn build
 

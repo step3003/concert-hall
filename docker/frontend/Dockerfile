@@ -10,7 +10,7 @@ COPY frontend/package.json fronted/yarn.lock ./
 
 RUN yarn
 
-COPY fronted /app
+COPY fronted ./
 
 RUN yarn build
 

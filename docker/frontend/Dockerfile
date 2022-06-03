@@ -1,13 +1,15 @@
-FROM node:16-alpine as dev
-
-WORKDIR /app
-
+# Build
+FROM node:16-alpine AS build
+WORKDIR /build
 COPY frontend/package.json frontend/yarn.lock ./
-
-RUN yarn install --frozen-lockfile
-
+RUN yarn install 
 COPY frontend/ .
+RUN yarn build
 
-RUN yarn build 
-
-CMD ["yarn", "dev"]
+# Dev
+FROM node:16-alpine AS dev
+WORKDIR /app
+RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+COPY --from=build --chown=nextjs:nodejs /build .
+USER nextjs
+CMD ["yarn", "start"]

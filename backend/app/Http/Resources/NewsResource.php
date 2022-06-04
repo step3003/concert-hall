@@ -19,7 +19,7 @@ class NewsResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->title,
-            'preview_image' => $this?->previewImage->getImgProxyUrl('preview_image'),
+            'preview_image' => $this?->previewImage->getImgProxyUrl('preview'),
         ];
     }
 }

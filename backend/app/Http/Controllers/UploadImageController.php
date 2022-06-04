@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
 class UploadImageController extends Controller
@@ -16,11 +17,17 @@ class UploadImageController extends Controller
 
     public function __invoke(Request $request): JsonResponse
     {
-        $user = User::query()->first();
-        $user->addMedia($request->file('image'))->toMediaCollection(User::PROFILE_IMAGE);
+        $admin = Admin::firstOrCreate([
+            'name' => 'Alex',
+            'email' => 'sokol.sasha66@gmail.com',
+        ], [
+            'password' => Hash::make('123456')
+        ]);
+
+        $admin->addMedia($request->file('image'))->toMediaCollection(Admin::PROFILE_IMAGE);
 
         return $this->ok([
-            'url' => $user->profileImage->getImgProxyUrl('profile'),
+            'url' => $admin->profileImage->getImgProxyUrl('profile'),
         ], 201);
     }
 }

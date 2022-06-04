@@ -51,7 +51,7 @@ return [
             'region' => env('S3_REGION'),
             'bucket' => env('S3_BUCKET'),
             'endpoint' => env('S3_ENDPOINT'),
-            'root' => 'media/'
+            'root' => '/'
         ],
 
         's3' => [

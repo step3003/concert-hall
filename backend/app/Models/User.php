@@ -61,7 +61,7 @@ class User extends Authenticatable implements HasMedia, HasImgProxyPresets
     {
        $this
            ->addMediaCollection(self::PROFILE_IMAGE)
-           ->useDisk('media')
+           ->useDisk('concert-hall')
            ->singleFile();
     }
 

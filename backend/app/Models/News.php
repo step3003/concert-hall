@@ -45,7 +45,7 @@ class News extends Model implements HasMedia, HasImgProxyPresets
     public function registerImgProxyPresets(): void
     {
         $this
-            ->addImgProxyPreset('profile')
+            ->addImgProxyPreset('preview')
             ->width('290')
             ->height('360')
             ->quality(95)

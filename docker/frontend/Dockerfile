@@ -1,8 +1,9 @@
-# Build
-FROM node:16-alpine AS build
-WORKDIR /build
+FROM node:16-alpine as dev
+
+WORKDIR /app
+
 COPY frontend/package.json frontend/yarn.lock ./
-RUN yarn install 
+RUN yarn install
 COPY frontend/ .
 RUN yarn build
 

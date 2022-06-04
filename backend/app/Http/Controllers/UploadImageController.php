@@ -25,6 +25,7 @@ class UploadImageController extends Controller
         ]);
 
         $admin->addMedia($request->file('image'))->toMediaCollection(Admin::PROFILE_IMAGE);
+        dump($admin);
 
         return $this->ok([
             'url' => $admin->profileImage->getImgProxyUrl('profile'),

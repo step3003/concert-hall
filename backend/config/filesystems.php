@@ -44,14 +44,14 @@ return [
             'throw' => false,
         ],
 
-        'media' => [
+        'concert-hall' => [
             'driver' => 's3',
             'key' => env('S3_KEY'),
             'secret' => env('S3_SECRET'),
             'region' => env('S3_REGION'),
             'bucket' => env('S3_BUCKET'),
             'endpoint' => env('S3_ENDPOINT'),
-            'root' => '/'
+            'root' => '/media'
         ],
 
         's3' => [

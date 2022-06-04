@@ -25,7 +25,7 @@ class NewsStoreController extends Controller
         $news->addMedia($request->file('preview'))->toMediaCollection(News::PREVIEW_IMAGE);
 
         return $this->ok([
-            'data' => $news->with('preview'),
+            'data' => $news->with('previewImage'),
         ], 201);
     }
 }

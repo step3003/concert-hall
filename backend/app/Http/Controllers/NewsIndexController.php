@@ -19,7 +19,7 @@ class NewsIndexController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         return $this->ok([
-            'data' => News::query()->with('preview')->get()
+            'data' => News::query()->with('previewImage')->get()
         ], 201);
     }
 }

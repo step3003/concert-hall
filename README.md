@@ -1,4 +1,4 @@
-# concert-hall
+# Concert-hall
 
 ## Сессии
 

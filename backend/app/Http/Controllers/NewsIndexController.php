@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\NewsResource;
 use App\Models\Admin;
 use App\Models\News;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -19,7 +20,9 @@ class NewsIndexController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         return $this->ok([
-            'data' => News::query()->with('previewImage')->get()
-        ], 201);
+            'data' => NewsResource::collection(
+                News::query()->with('previewImage')->get()
+            )
+        ], 200);
     }
 }

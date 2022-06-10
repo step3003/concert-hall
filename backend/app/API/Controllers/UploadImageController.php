@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\API\Controllers;
 
-use App\Http\Resources\NewsResource;
 use App\Models\Admin;
-use App\Models\News;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -13,16 +11,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 
-class NewsIndexController extends Controller
+class UploadImageController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function __invoke(Request $request): JsonResponse
     {
+        $admin = Admin::firstOrCreate([
+            'name' => 'Alex',
+            'email' => 'sokol.sasha66@gmail.com',
+        ], [
+            'password' => Hash::make('123456')
+        ]);
+
+        $admin->addMedia($request->file('image'))->toMediaCollection(Admin::PROFILE_IMAGE);
+
         return $this->ok([
-            'data' => NewsResource::collection(
-                News::query()->with('previewImage')->get()
-            )
-        ], 200);
+            'url' => $admin->profileImage->getImgProxyUrl('profile'),
+        ], 201);
     }
 }

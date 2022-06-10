@@ -1,33 +1,33 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\API\Controllers;
 
 use App\Models\Admin;
+use App\Models\News;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
-class UploadImageController extends Controller
+class NewsStoreController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function __invoke(Request $request): JsonResponse
     {
-        $admin = Admin::firstOrCreate([
-            'name' => 'Alex',
-            'email' => 'sokol.sasha66@gmail.com',
-        ], [
-            'password' => Hash::make('123456')
-        ]);
 
-        $admin->addMedia($request->file('image'))->toMediaCollection(Admin::PROFILE_IMAGE);
+        $news = News::create(
+            $request->all()
+        );
+
+        $news->addMedia($request->file('preview'))->toMediaCollection(News::PREVIEW_IMAGE);
 
         return $this->ok([
-            'url' => $admin->profileImage->getImgProxyUrl('profile'),
+            'data' => $news->with('previewImage'),
         ], 201);
     }
 }

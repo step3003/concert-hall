@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+
 use App\Services\MediaLibrary\Contracts\HasImgProxyPresets;
 use App\Services\MediaLibrary\Traits\InteractsWithImgProxy;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\MediaLibrary\HasMedia;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Admin extends Authenticatable implements HasMedia, HasImgProxyPresets
+class Client extends Authenticatable implements HasMedia, HasImgProxyPresets
 {
     public const PROFILE_IMAGE ='profile_image';
 
@@ -56,10 +58,10 @@ class Admin extends Authenticatable implements HasMedia, HasImgProxyPresets
 
     public function registerMediaCollections(): void
     {
-        $this
-            ->addMediaCollection(self::PROFILE_IMAGE)
-            ->useDisk('concert-hall')
-            ->singleFile();
+       $this
+           ->addMediaCollection(self::PROFILE_IMAGE)
+           ->useDisk('concert-hall')
+           ->singleFile();
     }
 
     public function registerImgProxyPresets(): void

@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\DocumentationController;
-use App\Http\Controllers\NewsIndexController;
-use App\Http\Controllers\NewsStoreController;
-use App\Http\Controllers\UploadImageController;
+use App\API\Controllers\DocumentationController;
+use App\API\Controllers\NewsIndexController;
+use App\API\Controllers\NewsStoreController;
+use App\API\Controllers\RegisterController;
+use App\API\Controllers\UploadImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,11 +23,21 @@ Route::get('/', DocumentationController::class);
 
 Route::post('upload-image', UploadImageController::class);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::prefix('auth')->as('auth.')->group(function () {
+//    Route::post('register', RegisterController::class)->name('register');
+//});
 
 Route::prefix('news')->as('.news')->group(function () {
     Route::get('/index', NewsIndexController::class);
     Route::post('/store', NewsStoreController::class);
+});
+
+Route::middleware('auth:token')->group(function () {
+
+});
+
+
+
+Route::prefix('auth')->group(function () {
+    Route::post('/token', RegisterController::class);
 });

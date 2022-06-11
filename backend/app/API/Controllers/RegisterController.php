@@ -26,7 +26,7 @@ class RegisterController extends Controller
 
         return $this->ok(
             [
-                'client' => AuthClientResource::make($authUser->client),
+                'data' => AuthClientResource::make($authUser->client),
                 'token' => $authUser->createToken()
             ],
             Response::HTTP_CREATED);

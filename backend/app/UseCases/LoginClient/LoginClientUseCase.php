@@ -16,7 +16,6 @@ class LoginClientUseCase
     {
         $client = $this->clientRepository->findClientByEmail($email);
 
-
         return new AuthUser($client);
     }
 }

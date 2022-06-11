@@ -24,10 +24,9 @@ class LoginController extends Controller
     {
         $authUser = $this->loginClientUseCase->login($request->email());
 
-
         return $this->ok(
             [
-                'client' => AuthClientResource::make($authUser->client),
+                'data' => AuthClientResource::make($authUser->client),
                 'token' => $authUser->createToken()
             ],
             Response::HTTP_OK);

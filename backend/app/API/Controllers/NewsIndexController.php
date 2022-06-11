@@ -16,6 +16,10 @@ class NewsIndexController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function __construct()
+    {
+    }
+
     public function __invoke(Request $request): JsonResponse
     {
         return $this->ok([

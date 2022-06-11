@@ -20,14 +20,6 @@ class NewsStoreController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
 
-        $news = News::create(
-            $request->all()
-        );
-
-        $news->addMedia($request->file('preview'))->toMediaCollection(News::PREVIEW_IMAGE);
-
-        return $this->ok([
-            'data' => $news->with('previewImage'),
-        ], 201);
+        return $this->ok([], 201);
     }
 }

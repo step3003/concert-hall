@@ -1,10 +1,10 @@
 <?php
 
-namespace App\API\Resources;
+namespace App\API\Resources\Clients;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class NewsResource extends JsonResource
+class AuthClientResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,10 @@ class NewsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'description' => $this->title,
-            'preview_image' => $this?->previewImage?->getImgProxyUrl('preview'),
+            'name' => $this->name,
+            'last_name' => $this->last_name,
+            'email'  => $this->email,
+            'profile_image' => $this?->profileImage?->getImgProxyUrl('profile'),
         ];
     }
 }

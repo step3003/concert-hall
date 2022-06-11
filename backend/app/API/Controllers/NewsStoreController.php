@@ -2,8 +2,8 @@
 
 namespace App\API\Controllers;
 
-use App\Models\Admin;
-use App\Models\News;
+use App\Persistence\Models\Admin;
+use App\Persistence\Models\News;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;

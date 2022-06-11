@@ -1,9 +1,11 @@
 <?php
 
 use App\API\Controllers\DocumentationController;
+use App\API\Controllers\LoginController;
 use App\API\Controllers\NewsIndexController;
 use App\API\Controllers\NewsStoreController;
 use App\API\Controllers\RegisterController;
+use App\API\Controllers\TestAuthController;
 use App\API\Controllers\UploadImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,21 +25,17 @@ Route::get('/', DocumentationController::class);
 
 Route::post('upload-image', UploadImageController::class);
 
-//Route::prefix('auth')->as('auth.')->group(function () {
-//    Route::post('register', RegisterController::class)->name('register');
-//});
+Route::prefix('auth')->as('auth.')->group(function () {
+    Route::post('register', RegisterController::class)->name('register');
+    Route::post('login', LoginController::class)->name('login');
+});
 
 Route::prefix('news')->as('.news')->group(function () {
-    Route::get('/index', NewsIndexController::class);
+    Route::get('/', NewsIndexController::class);
     Route::post('/store', NewsStoreController::class);
 });
 
 Route::middleware('auth:token')->group(function () {
-
+    Route::get('/test', TestAuthController::class);
 });
 
-
-
-Route::prefix('auth')->group(function () {
-    Route::post('/token', RegisterController::class);
-});

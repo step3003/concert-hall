@@ -1,0 +1,118 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: $MT;
+    color: $gray;
+}
+
+a {
+    text-decoration: none;
+    color: $gray;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+p {
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    background: inherit;
+    font-size: inherit;
+    font-family: $MT;
+    border: inherit;
+    cursor: pointer;
+    color: $gray;
+}
+
+.title {
+    font-size: 2em;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5em 2.5em;
+    margin: 1.5em 5em;
+    background-color: white;
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        gap: 2em;
+    }
+
+    &__title {
+        font-family: $PD;
+        font-size: 2.5rem;
+        color: $brown;
+    }
+
+    &__link {
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            color: $brown;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        gap: 1.5em;
+    }
+
+    &__search-btn {
+        padding: 0.2em;
+        svg path {
+            transition: all 0.2s ease-in-out;
+        }
+        &:hover svg path {
+            stroke: $brown;
+        }
+    }
+
+    &__sign-in-btn {
+        transition: all 0.2s ease-in-out;
+    }
+
+    &__sign-in-btn:hover {
+        color: $brown;
+    }
+}
+
+.btn {
+    background-color: $brown;
+    padding: 1rem 1.8rem;
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background-color: $light-brown;
+    }
+
+    &--outline-brown {
+        @include btn-outline();
+    }
+
+    &--outline-white {
+        @include btn-outline(#ffffff, #ffffff, $gray);
+    }
+}
+
+.container {
+    max-width: 1440px;
+    padding: 0 160px;
+    margin: 0 auto;
+
+  @media (min-width: 2048px) {
+    max-width: 1920px;
+  }
+}

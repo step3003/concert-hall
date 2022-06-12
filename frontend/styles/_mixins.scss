@@ -1,0 +1,10 @@
+@mixin btn-outline($color: $brown, $hover-bg: $brown, $hover-color: #FFFFFF) {
+    background: none;
+    border: 1px solid $color;
+    color: $color;
+
+    &:hover {
+        background-color: $hover-bg;
+        color: $hover-color;
+    }
+}

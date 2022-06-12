@@ -1,0 +1,67 @@
+// header
+.main {
+    padding-top: 1.5em;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/images/bg-main.png') no-repeat fixed;
+    background-size: cover;
+    height: 100vh;
+    color: #ffffff;
+
+    &__wrapper {
+        margin-top: 15%;
+        max-width: 40%;
+    }
+    &__title {
+        font-family: $PD;
+        font-size: 2.2em;
+        margin-top: 0.2em;
+    }
+    &__btn {
+        font-size: 1.2em;
+        margin-top: 2.5em;
+    }
+}
+
+.up-events {
+    &__wrapper {
+        margin-top: 5em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__title {
+        text-align: center;
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-top: 5em;
+
+        svg {
+            margin-left: 0.5rem;
+        }
+    }
+
+    &__events {
+        margin-top: 2.5em;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.6em;
+    }
+
+    &__event {
+        display: block;
+        width: calc(33% - 1.6em);
+        height: auto;
+
+        @media (max-width: 1270px) {
+            width: 100%;
+        }
+    }
+}

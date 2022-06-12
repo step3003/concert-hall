@@ -2,13 +2,14 @@
 
 namespace App\API\Controllers;
 
-use App\Models\Admin;
+use App\Persistence\Models\Admin;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 
 class UploadImageController extends Controller
@@ -23,6 +24,7 @@ class UploadImageController extends Controller
         ], [
             'password' => Hash::make('123456')
         ]);
+
 
         $admin->addMedia($request->file('image'))->toMediaCollection(Admin::PROFILE_IMAGE);
 

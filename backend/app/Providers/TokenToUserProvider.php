@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Token;
-use App\Models\User;
+use App\Persistence\Models\Token;
+use App\Persistence\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Database\Eloquent\Model;

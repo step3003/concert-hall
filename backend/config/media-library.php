@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\MediaLibrary\Generators\ImgProxyUrlGenerator;
+use App\Infrastructure\MediaLibrary\Generators\ImgProxyUrlGenerator;
 
 return [
 
@@ -30,7 +30,7 @@ return [
     /*
      * The fully qualified class name of the media model.
      */
-    'media_model' => \App\Models\Media::class,
+    'media_model' => \App\Persistence\Models\Media::class,
 
     /*
      * The fully qualified class name of the model used for temporary uploads.

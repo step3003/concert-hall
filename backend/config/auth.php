@@ -66,14 +66,14 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => \App\Persistence\Models\User::class,
         ],
 //        'tokens' => [
 //
 //        ],
          'tokens' => [
              'driver' => 'eloquent',
-             'table' => App\Models\Token::class,
+             'table' => \App\Persistence\Models\Token::class,
          ],
     ],
 

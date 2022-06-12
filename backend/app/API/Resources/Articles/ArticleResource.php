@@ -4,7 +4,7 @@ namespace App\API\Resources\Articles;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ArticlesResource extends JsonResource
+class ArticleResource extends JsonResource
 {
     public function toArray($request)
     {
@@ -12,6 +12,7 @@ class ArticlesResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'text'  => $this->text,
+            'slug'  => $this->slug,
             'preview_image' => $this?->previewImage?->getImgProxyUrl('preview'),
         ];
     }

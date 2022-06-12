@@ -13,11 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('event_instrument', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('text');
-            $table->string('slug')->nullable();
+
+            $table->foreignId('event_id')
+                ->constrained()
+                ->cascadeOnUpdate();
+
+            $table->foreignId('instrument_id')
+                ->constrained()
+                ->cascadeOnUpdate();
+
             $table->timestamps();
         });
     }
@@ -29,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('event_instrument');
     }
 };

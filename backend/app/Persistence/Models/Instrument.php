@@ -4,6 +4,7 @@ namespace App\Persistence\Models;
 
 use App\Infrastructure\MediaLibrary\Contracts\HasImgProxyPresets;
 use App\Infrastructure\MediaLibrary\Traits\InteractsWithImgProxy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -11,8 +12,7 @@ use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-
-class Article extends Model implements HasMedia, HasImgProxyPresets
+class Instrument extends Model implements HasMedia, HasImgProxyPresets
 {
     public const PREVIEW_IMAGE ='preview_image';
 
@@ -26,15 +26,7 @@ class Article extends Model implements HasMedia, HasImgProxyPresets
      */
     protected $fillable = [
         'title',
-        'text',
-        'slug',
     ];
-
-    public function setTitleAttribute($title)
-    {
-        $this->attributes['title'] = $title;
-        $this->attributes['slug'] = Str::slug($title);
-    }
 
     public function previewImage(): MorphOne
     {

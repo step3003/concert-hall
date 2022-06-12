@@ -2,7 +2,10 @@
 
 use App\API\Controllers\Articles\ArticleController;
 use App\API\Controllers\Articles\ArticlesListController;
+use App\API\Controllers\Articles\ArticleTestCreateController;
+use App\API\Controllers\Events\EventsListController;
 use App\API\Controllers\DocumentationController;
+use App\API\Controllers\Events\EventTestCreateController;
 use App\API\Controllers\LoginController;
 use App\API\Controllers\NewsIndexController;
 use App\API\Controllers\NewsStoreController;
@@ -31,16 +34,15 @@ Route::prefix('auth')->as('auth.')->group(function () {
     Route::post('login', LoginController::class)->name('login');
 });
 
-Route::prefix('articles')->as('.news')->group(function () {
+Route::prefix('articles')->as('.articles')->group(function () {
     Route::get('/', ArticlesListController::class);
-    Route::get('/{articleId}', ArticleController::class)
-        ->where('articleId', '[0-9]+')
-        ->name('show');
+    Route::get('/{slug}', ArticleController::class);
+    Route::post('/test-create', ArticleTestCreateController::class);
 });
 
-Route::prefix('news')->as('.news')->group(function () {
-    Route::get('/', NewsIndexController::class);
-    Route::post('/store', NewsStoreController::class);
+Route::prefix('events')->as('.events')->group(function () {
+    Route::get('/', EventsListController::class);
+    Route::post('/test-create', EventTestCreateController::class);
 });
 
 Route::middleware('auth:token')->group(function () {

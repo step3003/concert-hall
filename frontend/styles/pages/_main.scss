@@ -39,7 +39,7 @@
         align-items: center;
         font-size: 1.2em;
         font-weight: 600;
-        margin-top: 5em;
+        margin-top: 5rem;
 
         svg {
             margin-left: 0.5rem;
@@ -67,19 +67,12 @@
 
         &-overlay {
             position: relative;
+
             &::after {
                 content: '';
                 position: absolute;
                 transition: all 0.2s ease-in-out;
             }
-        }
-
-        &:hover &-overlay::after {
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.5);
         }
 
         &-date {
@@ -92,6 +85,21 @@
             font-size: 1.2em;
             line-height: 1.8;
             font-weight: 500;
+            transition: all 0.2s ease-in-out;
+        }
+
+        &:hover {
+            .up-events__event-title {
+        color: $brown;
+            }
+
+            .up-events__event-overlay::after {
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
         }
     }
 }

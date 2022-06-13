@@ -138,7 +138,6 @@ button {
     }
 
     &__item {
-        max-width: 20%;
         font-size: 1.2em;
         line-height: 1.6;
 
@@ -146,6 +145,10 @@ button {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        &:nth-child(2) {
+            max-width: 20%;
         }
     }
 
@@ -171,6 +174,14 @@ button {
         gap: 1.2rem;
     }
 
+    &__number {
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            color: $brown;
+        }
+    }
+
     &__soc-icons {
         display: flex;
         gap: 1.2rem;
@@ -186,6 +197,36 @@ button {
 
         &:hover svg path {
             fill: $brown;
+        }
+    }
+}
+
+.link-effect {
+    display: inline-block;
+    z-index: 1;
+
+    span {
+        position: relative;
+        transition: all 0.2s ease-in-out;
+        padding: 0.2rem;
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            background-color: $brown;
+            height: 0;
+            z-index: -1;
+            transition: all 0.2s ease-in-out;
+        }
+    }
+
+    &:hover {
+        color: #ffffff;
+        span::after {
+            height: 100%;
         }
     }
 }

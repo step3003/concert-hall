@@ -35,8 +35,8 @@ const Home: NextPage = () => {
                             Предстоящие мероприятия
                         </h3>
                         <Link href='/events'>
-                            <a className='up-events__link'>
-                                Смотреть все мероприятия
+                            <a className='up-events__link link-effect'>
+                                <span>Смотреть все мероприятия</span>
                                 <ArrowRight />
                             </a>
                         </Link>
@@ -51,6 +51,7 @@ const Home: NextPage = () => {
                                             height='100'
                                             width='100'
                                             quality='100'
+                                            alt='Мероприятие'
                                         />
                                     </div>
                                     <p className='up-events__event-date'>
@@ -71,7 +72,7 @@ const Home: NextPage = () => {
                         <h3 className='title'>История</h3>
                         <div className='history__cards'>
                             {['1', '2', '3'].map((path) => (
-                                <div className='history__card'>
+                                <div className='history__card' key={path}>
                                     <div className='history__img-wrapper'>
                                         <Image
                                             src={`/images/history-${path}.png`}
@@ -79,6 +80,7 @@ const Home: NextPage = () => {
                                             width='100'
                                             height='100'
                                             quality='100'
+                                            alt='История'
                                         />
                                     </div>
                                     <div className='history__card-desc'>

@@ -1,6 +1,5 @@
 // header
 .main {
-    padding-top: 1.5em;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url('/images/bg-main.png') no-repeat fixed;
     background-size: cover;
@@ -8,14 +7,16 @@
     color: #ffffff;
 
     &__wrapper {
-        margin-top: 15%;
-        max-width: 40%;
+        margin-top: 20%;
     }
+
     &__title {
         font-family: $PD;
         font-size: 2.2em;
         margin-top: 0.2em;
+        max-width: 40%;
     }
+
     &__btn {
         font-size: 1.2em;
         margin-top: 2.5em;
@@ -25,6 +26,9 @@
 .up-events {
     &__wrapper {
         margin-top: 5em;
+    }
+
+    &__container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -90,7 +94,7 @@
 
         &:hover {
             .up-events__event-title {
-        color: $brown;
+                color: $brown;
             }
 
             .up-events__event-overlay::after {
@@ -106,11 +110,10 @@
 
 // history
 .history {
-    background-color: $light-gray;
-
     &__wrapper {
         margin-top: 5em;
         padding: 5em 0;
+        background-color: $light-gray;
     }
 
     &__cards {

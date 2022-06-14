@@ -6,6 +6,7 @@ body {
     color: $gray;
     line-height: 1.2;
     background-color: #ffffff;
+    box-sizing: border-box;
 }
 
 a {
@@ -47,6 +48,10 @@ button {
     padding: 1.5em 2.5em;
     margin: 1.5em 5em;
     background-color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
 
     &__nav {
         display: flex;
@@ -62,6 +67,18 @@ button {
 
     &__link {
         transition: all 0.2s ease-in-out;
+
+        &__btn {
+            position: absolute;
+            transform: translateY(-50%);
+            top: 50%;
+            right: 1.3em;
+        }
+        &--active {
+            color: $brown;
+            font-weight: 600;
+        }
+
         &:hover {
             color: $brown;
         }
@@ -74,15 +91,7 @@ button {
     }
 
     &__search-btn {
-        padding: 0.2em;
-
-        svg path {
-            transition: all 0.2s ease-in-out;
-        }
-
-        &:hover svg path {
-            stroke: $brown;
-        }
+        margin-right: -0.2em;
     }
 
     &__sign-in-btn {
@@ -130,6 +139,8 @@ button {
 }
 
 .footer {
+    margin-top: auto;
+
     &__wrapper {
         margin-top: 20em;
         display: flex;
@@ -186,19 +197,6 @@ button {
         display: flex;
         gap: 1.2rem;
     }
-
-    &__soc-icon {
-        cursor: pointer;
-        padding: 0.2rem;
-
-        svg path {
-            transition: all 0.2s ease-in-out;
-        }
-
-        &:hover svg path {
-            fill: $brown;
-        }
-    }
 }
 
 .link-effect {
@@ -228,5 +226,30 @@ button {
         span::after {
             height: 100%;
         }
+    }
+}
+
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.icon {
+    padding: 0.2rem;
+    cursor: pointer;
+
+    &--solid svg path,
+    svg path {
+        transition: all 0.2s ease-in-out;
+    }
+
+    &--solid:hover svg path {
+        stroke: $brown;
+    }
+
+    &:hover svg path {
+        fill: $brown;
     }
 }

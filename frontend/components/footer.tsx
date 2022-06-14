@@ -40,10 +40,10 @@ const Footer: React.FC = () => {
                     <div className='footer__item'>
                         <h3 className='footer__title'>Социальные сети</h3>
                         <div className='footer__soc-icons'>
-                            <a className='footer__soc-icon'>
+                            <a className='icon'>
                                 <TG />
                             </a>
-                            <a className='footer__soc-icon'>
+                            <a className='icon'>
                                 <Inst />
                             </a>
                         </div>

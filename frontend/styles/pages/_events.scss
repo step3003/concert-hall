@@ -1,0 +1,72 @@
+.events-main {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/images/bg-events.png') no-repeat fixed;
+    background-size: cover;
+    display: grid;
+    place-items: center;
+    padding-bottom: 10em;
+
+    &__search-form {
+        margin-top: 20em;
+        position: relative;
+        max-width: 30%;
+        width: 100%;
+    }
+
+    &__input {
+        font-size: 1rem;
+        padding: 1.5em;
+        font-family: $MT;
+        border: none;
+        width: 100%;
+        color: $gray;
+
+        &::placeholder {
+            font-size: 1rem;
+        }
+    }
+
+    &__btn {
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        right: 1.3em;
+    }
+}
+
+.events-filter {
+    &__wrapper {
+        padding: 2.5em 0;
+    }
+
+    &__container {
+        display: flex;
+        gap: 2.5em;
+    }
+}
+
+.event-filter {
+    cursor: pointer;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        transition: all 0.2s ease-in-out;
+    }
+
+    &__icon {
+        margin-left: 0.5em;
+        margin-top: 0.2em;
+    }
+    &__icon svg path {
+        transition: all 0.2s ease-in-out;
+    }
+
+    &:hover &__title {
+        color: $brown;
+    }
+
+    &:hover &__icon svg path {
+        stroke: $brown;
+    }
+}

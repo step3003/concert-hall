@@ -1,6 +1,6 @@
-@mixin btn-outline($color: $brown, $hover-bg: $brown, $hover-color: #FFFFFF) {
+@mixin btn-outline($color: $brown, $hover-bg: $brown, $hover-color: #ffffff) {
     background: none;
-    border: 1px solid $color;
+    box-shadow: inset 0px 0px 0px 1px $color;
     color: $color;
 
     &:hover {

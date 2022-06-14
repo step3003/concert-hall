@@ -9,11 +9,12 @@
     &__search-form {
         margin-top: 20em;
         position: relative;
-        max-width: 30%;
+        max-width: 40%;
         width: 100%;
     }
 
     &__input {
+        outline: none;
         font-size: 1rem;
         padding: 1.5em;
         font-family: $MT;
@@ -36,37 +37,155 @@
 
 .events-filter {
     &__wrapper {
-        padding: 2.5em 0;
+        border-bottom: 1px solid $silver;
     }
 
     &__container {
         display: flex;
-        gap: 2.5em;
+        align-items: center;
+    }
+
+    &__all {
+        margin-left: auto;
     }
 }
 
 .event-filter {
     cursor: pointer;
+    position: relative;
 
     &__title {
         display: flex;
         align-items: center;
         transition: all 0.2s ease-in-out;
+        padding: 1.5em;
+        transition: all 0.2s ease-out;
     }
 
     &__icon {
         margin-left: 0.5em;
-        margin-top: 0.2em;
+        display: flex;
+        transition: all 0.2s ease-out;
     }
     &__icon svg path {
         transition: all 0.2s ease-in-out;
     }
 
+    &__splash {
+        width: max-content;
+        padding: 1.5em;
+        background: $brown;
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        transition: all 0.2s ease-out;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+        color: white;
+    }
+
+    &__reset-btn {
+        margin-top: 2.5em;
+        color: white;
+        text-decoration-color: white;
+    }
+
     &:hover &__title {
-        color: $brown;
+        background: $brown;
+        color: white;
     }
 
     &:hover &__icon svg path {
-        stroke: $brown;
+        fill: white;
+    }
+
+    &:hover &__icon {
+        transform: rotate(180deg);
+    }
+
+    &:hover &__splash {
+        z-index: 1;
+        opacity: 1;
+    }
+}
+
+.events {
+    &__wrapper {
+        margin-top: 8em;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 5em;
+    }
+}
+
+.event {
+    &__title-date {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-family: $PD;
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
+
+    &__date {
+        font-size: 1.5rem;
+        font-weight: 900;
+    }
+
+    &__image-about {
+        margin-top: 2.5em;
+        display: flex;
+        gap: 2.5em;
+    }
+
+    &__image-wrapper {
+        max-width: 50%;
+        max-height: 450px;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
+
+    &__about {
+        max-width: 500%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__desc {
+        font-size: 1.3rem;
+    }
+
+    &__price-control {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-top: auto;
+    }
+
+    &__price {
+        font-size: 1.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+
+    &__control {
+        display: flex;
+        gap: 1.5em;
+
+        &-btn {
+            font-size: 1.3rem;
+        }
     }
 }

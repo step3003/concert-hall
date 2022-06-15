@@ -1,11 +1,42 @@
 import React from 'react';
 import Search from '../../public/icons/search.svg';
-import Chevron from '../../public/icons/chevron.svg';
 import Event from '../../components/events/event';
+import Filter from '../../components/events/filter';
+
+const dummyData = {
+    events: ['1', '2', '3', '4', '5', '6'],
+    filters: [
+        {
+            title: 'Тип мероприятия',
+            filters: [
+                { name: 'Студенческие спектакли', count: 2, id: 'study' },
+                { name: 'Семейные мероприятия', count: 8, id: 'fmaily' },
+                { name: 'Бесплатные мероприятия', count: 3, id: 'free' },
+            ],
+        },
+        {
+            title: 'Жанр',
+            filters: [
+                { name: 'Классика', count: 2, id: 'classica' },
+                { name: 'Джаз', count: 8, id: 'jazz' },
+                { name: 'Блюз', count: 3, id: 'bluze' },
+            ],
+        },
+        {
+            title: 'Инструмент',
+            filters: [
+                { name: 'Студенческие спектакли', count: 2, id: 'study' },
+                { name: 'Семейные мероприятия', count: 8, id: 'fmaily' },
+                { name: 'Бесплатные мероприятия', count: 3, id: 'free' },
+            ],
+        },
+        {
+            title: 'Дата',
+        },
+    ],
+};
 
 const Events: React.FC = () => {
-    const events = ['1', '2', '3', '4', '5', '6'];
-
     return (
         <>
             <div className='events-main'>
@@ -30,63 +61,9 @@ const Events: React.FC = () => {
             <div className='events-filter'>
                 <div className='events-filter__wrapper'>
                     <div className='events-filter__container container'>
-                        <div className='event-filter '>
-                            <h4 className='event-filter__title'>
-                                Тип мероприятия
-                                <span className='event-filter__icon icon--solid'>
-                                    <Chevron />
-                                </span>
-                            </h4>
-                            <div className='event-filter__splash'>
-                                <ul className='event-filter__list'>
-                                    <li>
-                                        <input type='checkbox' id='study' />
-                                        <label for='study'>
-                                            Студенческие спектакли (2)
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type='checkbox' id='family' />
-                                        <label for='family'>
-                                            Семейные мероприятия (8)
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type='checkbox' id='free' />
-                                        <label for='free'>
-                                            Бесплатные мероприятия (3)
-                                        </label>
-                                    </li>
-                                </ul>
-                                <button className='event-filter__reset-btn text-underline'>
-                                    Очистить фильтр
-                                </button>
-                            </div>
-                        </div>
-                        <div className='event-filter'>
-                            <h4 className='event-filter__title'>
-                                Жанр
-                                <span className='event-filter__icon icon--solid'>
-                                    <Chevron />
-                                </span>
-                            </h4>
-                        </div>
-                        <div className='event-filter'>
-                            <h4 className='event-filter__title'>
-                                Инструмент
-                                <span className='event-filter__icon icon--solid'>
-                                    <Chevron />
-                                </span>
-                            </h4>
-                        </div>
-                        <div className='event-filter'>
-                            <h4 className='event-filter__title'>
-                                Дата
-                                <span className='event-filter__icon icon--solid'>
-                                    <Chevron />
-                                </span>
-                            </h4>
-                        </div>
+                        {dummyData.filters.map(({ ...props }) => (
+                            <Filter key={props.name} {...props} />
+                        ))}
                         <p className='events-filter__all'>Всего: 250</p>
                     </div>
                 </div>
@@ -94,7 +71,7 @@ const Events: React.FC = () => {
             <div className='events'>
                 <div className='events__wrapper'>
                     <div className='events__container container'>
-                        {events.map((path) => (
+                        {dummyData.events.map((path) => (
                             <Event key={path} />
                         ))}
                     </div>

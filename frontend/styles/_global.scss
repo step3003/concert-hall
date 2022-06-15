@@ -260,3 +260,41 @@ button {
         fill: $brown;
     }
 }
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &__check {
+        position: relative;
+        display: block;
+        border: 1px solid white;
+        width: 1em;
+        height: 1em;
+        margin-right: 0.7em;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 0;
+            height: 0;
+            transition: all 0.1s ease-in-out;
+        }
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__input:checked ~ &__check::before {
+        width: 10px;
+        height: 5px;
+        border-left: 1px solid white;
+        border-bottom: 1px solid white;
+        bottom: 50%;
+        left: 50%;
+        transform: rotate(-50deg) translate(-50%, -50%);
+    }
+}

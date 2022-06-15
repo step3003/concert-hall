@@ -81,7 +81,7 @@
         transition: all 0.2s ease-out;
     }
 
-    &__list {
+    &__form {
         display: flex;
         flex-direction: column;
         gap: 1.5em;
@@ -89,7 +89,7 @@
     }
 
     &__reset-btn {
-        margin-top: 2.5em;
+        margin: 2.5em 0 0 auto;
         color: white;
         text-decoration-color: white;
     }

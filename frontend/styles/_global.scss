@@ -322,6 +322,8 @@ button {
     z-index: -3;
     background-color: rgba(0, 0, 0, 0);
     transition: all 0.2s ease-in-out;
+    overflow: auto;
+    padding: 2.5em;
 
     &__wrapper {
         background-color: white;

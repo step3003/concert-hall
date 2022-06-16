@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Chevron from '../../public/icons/chevron.svg';
+import { formatDate } from '../../shared/libs/math';
 
 type Props = {
     title: 'Тип мероприятия' | 'Жанр' | 'Инструмент' | 'Дата';
@@ -15,6 +16,7 @@ type Props = {
 
 export const Filter: React.FC<Props> = ({ title, filters }) => {
     const [checked, setChecked] = useState({});
+    const [date, setDate] = useState({ from: formatDate(), to: formatDate() });
 
     // useEffect(() => {
     //     console.log(checked);
@@ -27,6 +29,13 @@ export const Filter: React.FC<Props> = ({ title, filters }) => {
         }));
     }
 
+    function handleDate(e: React.ChangeEvent<HTMLInputElement>) {
+        setDate((prevState) => ({
+            ...prevState,
+            [e.target.id]: formatDate(e.target.valueAsDate),
+        }));
+    }
+
     function handleResetForm() {
         const checkedClean: any = {};
 
@@ -35,21 +44,34 @@ export const Filter: React.FC<Props> = ({ title, filters }) => {
         }
 
         setChecked(checkedClean);
+        setDate({ from: formatDate(), to: formatDate() });
     }
 
     function renderFilter() {
         if (title == 'Дата') {
             return (
-                <>
-                    <label>
-                        С
-                        <input id='to' type='date' />
-                    </label>
-                    <label>
-                        По
-                        <input id='to' type='date' />
-                    </label>
-                </>
+                <div className='event-filter__date'>
+                    <div className='event-filter__date-field'>
+                        <label htmlFor='from'>С</label>
+                        <input
+                            className='event-filter__input-date input'
+                            type='date'
+                            id='from'
+                            value={date.from}
+                            onChange={handleDate}
+                        />
+                    </div>
+                    <div className='event-filter__date-field'>
+                        <label htmlFor='to'>По</label>
+                        <input
+                            className='event-filter__input-date input'
+                            id='to'
+                            type='date'
+                            value={date.to}
+                            onChange={handleDate}
+                        />
+                    </div>
+                </div>
             );
         } else {
             return filters.map(({ name, count, id }) => (
@@ -58,6 +80,7 @@ export const Filter: React.FC<Props> = ({ title, filters }) => {
                         className='checkbox__input'
                         type='checkbox'
                         onChange={handleCheckbox}
+                        // @ts-ignore
                         checked={checked[id]}
                     />
                     <span className='checkbox__check'></span>

@@ -1,16 +1,33 @@
-import { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Search from '../public/icons/search.svg';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 
-const Header: React.FC = () => {
+type Props = {
+    setIsSignIn: (val: boolean) => void;
+    setIsSignUp: (val: boolean) => void;
+    setIsOpenModal: (val: boolean) => void;
+};
+
+const Header: React.FC<Props> = ({
+    setIsSignIn,
+    setIsSignUp,
+    setIsOpenModal,
+}) => {
     const { pathname } = useRouter();
 
     function isLinkActive(path: string) {
         return cn('header__link', {
             'header__link header__link--active': pathname == path,
         });
+    }
+
+    function handleSign(cb: (val: boolean) => void) {
+        return () => {
+            setIsOpenModal(true);
+            cb(true);
+        };
     }
 
     return (
@@ -35,8 +52,15 @@ const Header: React.FC = () => {
                 <button className='header__search-btn icon--solid'>
                     <Search />
                 </button>
-                <button className='header__sign-in-btn'>Войти</button>
-                <button className='btn'>Зарегистрироваться</button>
+                <button
+                    className='header__sign-in-btn'
+                    onClick={handleSign(setIsSignIn)}
+                >
+                    Войти
+                </button>
+                <button className='btn' onClick={handleSign(setIsSignUp)}>
+                    Зарегистрироваться
+                </button>
             </div>
         </header>
     );

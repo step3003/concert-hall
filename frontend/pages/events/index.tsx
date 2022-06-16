@@ -1,3 +1,4 @@
+ // @ts-nocheck
 import React from 'react';
 import Search from '../../public/icons/search.svg';
 import Event from '../../components/events/event';

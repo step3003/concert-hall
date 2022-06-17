@@ -1,10 +1,11 @@
+// @ts-nocheck
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import Filter from '../../public/icons/filter.svg';
 import Image from 'next/image';
 import Hint from '../../components/hint';
 
-export const dummyData = [
+const dummyData = [
     {
         date: '20/10/2222',
         time: '22:00',
@@ -46,7 +47,7 @@ export const BlogPage: NextPage = () => {
                     </div>
                     <div className='blog__posts'>
                         {dummyData.map(({ date, time, title, imgSrc }, idx) => (
-                            <div className='blog__post'>
+                            <div className='blog__post' key={title}>
                                 <div className='blog__post-img'>
                                     <Image
                                         src={imgSrc}

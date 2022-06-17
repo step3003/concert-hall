@@ -141,6 +141,7 @@
     &__title-date {
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 
     &__title {
@@ -161,22 +162,19 @@
     }
 
     &__image-wrapper {
-        max-width: 50%;
-        max-height: 450px;
-        overflow: hidden;
         height: 100%;
-        width: 100%;
+        width: 50%;
     }
 
     &__about {
-        max-width: 500%;
-        width: 100%;
+        width: 50%;
         display: flex;
         flex-direction: column;
     }
 
     &__desc {
         font-size: 1.3rem;
+        margin-bottom: 2.5rem;
     }
 
     &__price-control {
@@ -195,9 +193,5 @@
     &__control {
         display: flex;
         gap: 1.5em;
-
-        &-btn {
-            font-size: 1.3rem;
-        }
     }
 }

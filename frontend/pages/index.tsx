@@ -31,7 +31,7 @@ const Home: NextPage = () => {
                         <h3 className='up-events__title title'>
                             Предстоящие мероприятия
                         </h3>
-                        <Link href='/events'>
+                        <Link href='/events' passHref>
                             <a className='up-events__link link-effect'>
                                 <span>Смотреть все мероприятия</span>
                                 <ArrowRight />
@@ -44,6 +44,7 @@ const Home: NextPage = () => {
                                     <div className='up-events__event-overlay'>
                                         <Image
                                             src={`/images/upcoming-event-${path}.png`}
+                                            objectFit='cover'
                                             layout='responsive'
                                             height='100'
                                             width='100'
@@ -54,9 +55,9 @@ const Home: NextPage = () => {
                                     <p className='up-events__event-date'>
                                         20/10/2022 | 22:00
                                     </p>
-                                    <p className='up-events__event-title text-underline'>
+                                    <h4 className='up-events__event-title text-underline'>
                                         Камерный ансамбль оркестра МЕТ
-                                    </p>
+                                    </h4>
                                 </a>
                             ))}
                         </div>
@@ -73,6 +74,7 @@ const Home: NextPage = () => {
                                     <div className='history__img-wrapper'>
                                         <Image
                                             src={`/images/history-${path}.png`}
+                                            objectFit='cover'
                                             layout='responsive'
                                             width='100'
                                             height='100'

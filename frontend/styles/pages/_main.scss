@@ -7,7 +7,7 @@
     color: #ffffff;
 
     &__wrapper {
-        margin-top: 20%;
+        margin-top: 24em;
     }
 
     &__title {
@@ -18,7 +18,6 @@
     }
 
     &__btn {
-        font-size: 1.3rem;
         margin-top: 2.5rem;
     }
 }
@@ -62,7 +61,6 @@
     &__event {
         display: block;
         width: calc(33% - 1.6em);
-        height: auto;
         cursor: pointer;
 
         @media (max-width: 1270px) {

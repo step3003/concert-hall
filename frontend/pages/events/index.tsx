@@ -1,5 +1,5 @@
- // @ts-nocheck
-import React from 'react';
+// @ts-nocheck
+import type { NextPage } from 'next';
 import Search from '../../public/icons/search.svg';
 import Event from '../../components/events/event';
 import Filter from '../../components/events/filter';
@@ -37,7 +37,7 @@ const dummyData = {
     ],
 };
 
-const Events: React.FC = () => {
+const Events: NextPage = () => {
     return (
         <>
             <div className='events-main'>

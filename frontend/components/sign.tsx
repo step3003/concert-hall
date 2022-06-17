@@ -1,8 +1,9 @@
- // @ts-nocheck
-import React, { useState } from 'react';
+// @ts-nocheck
+import React from 'react';
 import Google from '../public/icons/google.svg';
 import Yandex from '../public/icons/yandex.svg';
-import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import SignUp from './signUp';
+import SignIn from './signIn';
 import cn from 'classnames';
 
 type Props = {
@@ -22,9 +23,6 @@ export const Sign: React.FC<Props> = ({
     isSignUp,
     isOpenModal,
 }) => {
-    // maybe you need delete isSignUp
-
-    const [showPassword, setShowPassword] = useState(false);
     function handleCloseBtn() {
         setIsOpenModal(false);
 
@@ -48,7 +46,6 @@ export const Sign: React.FC<Props> = ({
 
     function handleClickOuterModal(e) {
         const classList = Array.from(e.target.classList);
-
         if (classList.includes('modal--active')) {
             handleCloseBtn();
         }
@@ -79,125 +76,14 @@ export const Sign: React.FC<Props> = ({
                     <Yandex />
                 </div>
                 <span className='sign__or'>или</span>
-                <form
-                    className={cn('sign__form', {
-                        'sign__form--active': isSignIn,
-                    })}
-                >
-                    <div className='sign__field'>
-                        <label htmlFor='email' hidden>
-                            Почта
-                        </label>
-                        <input
-                            className='sign__input input'
-                            type='email'
-                            id='email'
-                            placeholder='Почта'
-                        />
-                    </div>
-                    <div className='sign__field sign__field--password'>
-                        <label htmlFor='password' hidden>
-                            Пароль
-                        </label>
-                        <input
-                            className='sign__input input'
-                            type={showPassword ? 'text' : 'password'}
-                            id='password'
-                            placeholder='Пароль'
-                        />
-                        {showPassword ? (
-                            <AiOutlineEyeInvisible
-                                onClick={() => setShowPassword(false)}
-                            />
-                        ) : (
-                            <AiOutlineEye
-                                onClick={() => setShowPassword(true)}
-                            />
-                        )}
-                    </div>
-                    <p className='sign__forgot-password text-underline'>
-                        Забыли пароль?
-                    </p>
-                    <div className='sign__control'>
-                        <button
-                            className='text-underline'
-                            onClick={handleDontHaveAccountBtn}
-                        >
-                            У меня нет аккаунта
-                        </button>
-                        <button className='btn'>Войти</button>
-                    </div>
-                </form>
-                <form
-                    className={cn('sign__form', {
-                        'sign__form--active': isSignUp,
-                    })}
-                >
-                    <div className='sign__field'>
-                        <label htmlFor='firstname' hidden>
-                            Имя
-                        </label>
-                        <input
-                            className='sign__input input'
-                            type='text'
-                            id='firstname'
-                            placeholder='Имя'
-                        />
-                    </div>
-                    <div className='sign__field'>
-                        <label htmlFor='lastname' hidden>
-                            Фамилия
-                        </label>
-                        <input
-                            className='sign__input input'
-                            type='text'
-                            id='lastname'
-                            placeholder='Фамилия'
-                        />
-                    </div>
-                    <div className='sign__field'>
-                        <label htmlFor='email' hidden>
-                            Почта
-                        </label>
-                        <input
-                            className='sign__input input'
-                            type='email'
-                            id='email'
-                            placeholder='Почта'
-                        />
-                    </div>
-                    <div className='sign__field'>
-                        <label htmlFor='password' hidden>
-                            Пароль
-                        </label>
-                        <input
-                            className='sign__input input'
-                            type='password'
-                            id='password'
-                            placeholder='Пароль'
-                        />
-                    </div>
-                    <div className='sign__field'>
-                        <label htmlFor='password-repeat' hidden>
-                            Повторите пароль
-                        </label>
-                        <input
-                            className='sign__input input'
-                            type='password'
-                            id='password-repeat'
-                            placeholder='Повторите пароль'
-                        />
-                    </div>
-                    <div className='sign__control'>
-                        <button
-                            className='text-underline'
-                            onClick={handleAlreayHadAccountBtn}
-                        >
-                            У меня есть аккаунт
-                        </button>
-                        <button className='btn'>Войти</button>
-                    </div>
-                </form>
+                <SignIn
+                    isSignIn={isSignIn}
+                    handleDontHaveAccountBtn={handleDontHaveAccountBtn}
+                />
+                <SignUp
+                    isSignUp={isSignUp}
+                    handleAlreayHadAccountBtn={handleAlreayHadAccountBtn}
+                />
             </div>
         </div>
     );

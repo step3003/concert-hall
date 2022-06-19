@@ -1,0 +1,56 @@
+.gallery {
+    &__wrapper {
+        margin-top: 12em;
+    }
+
+    &__title {
+        text-align: center;
+        margin-bottom: 5em;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(7, minmax(13em, 1fr));
+        grid-template-areas:
+            'g1 g1 g1 g2 g3 g3'
+            'g1 g1 g1 g6 g6 g6'
+            'g4 g4 g5 g6 g6 g6'
+            'g4 g4 g5 g6 g6 g6'
+            'g7 g7 g5 g9 g10 g10'
+            'g7 g7 g8 g9 g10 g10'
+            'g11 g11 g8 g9 g12 g12';
+        overflow: hidden;
+        background-color: $gray;
+    }
+
+    &__grid-item {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: all 0.2s ease-out;
+        }
+
+        img {
+            transition: all 0.2s ease-out;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.1);
+            }
+            &:after {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+        }
+    }
+}

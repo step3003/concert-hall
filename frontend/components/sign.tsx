@@ -60,7 +60,7 @@ export const Sign: React.FC<Props> = ({
         >
             <div className='modal__wrapper'>
                 <button
-                    className='modal__close-btn'
+                    className='close-btn'
                     aria-hidden='true'
                     onClick={handleCloseBtn}
                 >

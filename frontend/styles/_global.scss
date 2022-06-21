@@ -37,7 +37,7 @@ button {
     background: inherit;
     font-size: inherit;
     font-family: $MT;
-    border: inherit;
+    border: none;
     cursor: pointer;
     color: $gray;
     padding: 0;
@@ -334,37 +334,6 @@ button {
         transition: all 0.2s ease-in-out;
     }
 
-    &__close-btn {
-        position: absolute;
-        right: 1.5em;
-        top: 1.5em;
-        height: 35px;
-        width: 35px;
-
-        &:after,
-        &:before {
-            content: '';
-            position: absolute;
-            width: 35px;
-            height: 1px;
-            background-color: $gray;
-            left: 50%;
-            transition: all 0.2s ease-in-out;
-        }
-
-        &:hover:after,
-        &:hover:before {
-            background-color: $brown;
-        }
-
-        &:after {
-            transform: translateX(-50%) rotate(-45deg);
-        }
-        &:before {
-            transform: translateX(-50%) rotate(45deg);
-        }
-    }
-
     &--active {
         display: grid;
         z-index: 3;
@@ -374,6 +343,37 @@ button {
 
     &--active &__wrapper {
         opacity: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    right: 1.5em;
+    top: 1.5em;
+    height: 35px;
+    width: 35px;
+
+    &:after,
+    &:before {
+        content: '';
+        position: absolute;
+        width: 35px;
+        height: 1px;
+        background-color: $gray;
+        left: 50%;
+        transition: all 0.2s ease-in-out;
+    }
+
+    &:hover:after,
+    &:hover:before {
+        background-color: $brown;
+    }
+
+    &:after {
+        transform: translateX(-50%) rotate(-45deg);
+    }
+    &:before {
+        transform: translateX(-50%) rotate(45deg);
     }
 }
 

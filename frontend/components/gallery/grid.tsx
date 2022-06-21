@@ -1,12 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-
-const dummyData = Array.from({ length: 12 }, (_, idx) => `${idx + 1}`);
+import { grid } from '../../shared/dummyData';
 
 const Grid: React.FC = () => {
     return (
         <div className='gallery__grid'>
-            {dummyData.map((path) => (
+            {grid.map((path) => (
                 <div
                     className='gallery__grid-item'
                     key={path}

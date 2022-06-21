@@ -35,13 +35,14 @@
 
 .ticket {
     width: calc(50% - 1.25em);
-    max-height: 12rem;
-    height: 100%;
+    min-height: 12rem;
     display: flex;
     overflow: hidden;
     border: 1px solid $silver;
+    position: relative;
 
     &__img {
+        position: relative;
         width: 30%;
     }
 
@@ -56,11 +57,35 @@
     &__title {
         font-family: $PD;
         font-weight: 600;
+        width: calc(100% - 16.5px - 1.5em);
     }
 
-    &__date-btn {
+    &__control {
+        margin-top: 1.5em;
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: flex-end;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7em;
+
+        &-cost {
+            span {
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    &__delete-btn {
+        width: 16.5px;
+        height: 16.5px;
+
+        &::before,
+        &::after {
+            width: 16.5px;
+        }
     }
 }

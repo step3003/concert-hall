@@ -4,6 +4,8 @@ USER root
 
 # Hooks for installing additional extensions or packages
 
+RUN apk add --no-cache postgresql-client
+
 USER php
 
 ###

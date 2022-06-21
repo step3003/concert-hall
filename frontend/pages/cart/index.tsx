@@ -20,6 +20,7 @@ const Cart: NextPage = () => {
                     {ticketsWaitingPay.map(({ imgSrc, title, info, id }) => {
                         return (
                             <Ticket
+                                key={id}
                                 imgSrc={imgSrc}
                                 title={title}
                                 info={info}
@@ -38,9 +39,9 @@ const Cart: NextPage = () => {
             </div>
             <div className='tickets'>
                 <div className='tickets__wrapper'>
-                    {ticketsPaid.map(({ imgSrc, title, info }) => {
+                    {ticketsPaid.map(({ imgSrc, title, info, id }) => {
                         return (
-                            <Ticket imgSrc={imgSrc} title={title} info={info} />
+                            <Ticket key={id} imgSrc={imgSrc} title={title} info={info} />
                         );
                     })}
                 </div>

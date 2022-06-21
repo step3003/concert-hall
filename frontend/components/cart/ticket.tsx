@@ -1,8 +1,7 @@
-import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Ticket: React.FN = ({ imgSrc, title, info, id }) => {
+const Ticket = ({ imgSrc, title, info, id }: any) => {
     console.log(info);
 
     return (

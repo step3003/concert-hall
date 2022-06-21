@@ -26,9 +26,12 @@ class EventsListController extends Controller
     {
         $eventsPaginator = $this->eventUseCase->getEventsWithPaginate($request->page());
 
-        return $this->ok([
-            'data' => EventResource::collection($eventsPaginator->items()),
-            'meta' => PaginatorMetaResource::make($eventsPaginator)
-        ], Response::HTTP_OK);
+        return $this->ok(
+            [
+                'data' => EventResource::collection($eventsPaginator->items()),
+                'meta' => PaginatorMetaResource::make($eventsPaginator)
+            ],
+            Response::HTTP_OK
+        );
     }
 }

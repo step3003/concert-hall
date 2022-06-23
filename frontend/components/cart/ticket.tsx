@@ -2,8 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const Ticket = ({ imgSrc, title, info, id }: any) => {
-    console.log(info);
-
     return (
         <div className='ticket'>
             <div className='ticket__img'>

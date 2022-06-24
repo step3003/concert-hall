@@ -7,7 +7,7 @@ import { ticketsWaitingPay, ticketsPaid } from '../../shared/dummyData';
 
 const Cart: NextPage = () => {
     return (
-        <Layout>
+        <Layout isMain>
             <div className='cart__header'>
                 <h4 className='cart__subtitle'>Ожидают оплаты</h4>
                 <button className='cart__control-btn link-effect'>
@@ -41,7 +41,12 @@ const Cart: NextPage = () => {
                 <div className='tickets__wrapper'>
                     {ticketsPaid.map(({ imgSrc, title, info, id }) => {
                         return (
-                            <Ticket key={id} imgSrc={imgSrc} title={title} info={info} />
+                            <Ticket
+                                key={id}
+                                imgSrc={imgSrc}
+                                title={title}
+                                info={info}
+                            />
                         );
                     })}
                 </div>

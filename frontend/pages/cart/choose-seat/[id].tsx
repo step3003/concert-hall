@@ -9,10 +9,10 @@ export const ChooseSeat = () => {
             <div className='cart__header cart__header--choose-seat'>
                 <div className='cart__header-top'>
                     <h4 className='cart__subtitle'>Выбор мест</h4>
-                    <button className='cart__control-btn link-effect'>
-                        <span>Билеты</span>
-                        <TicketIcon />
-                    </button>
+                    {/* <button className='cart__control-btn link-effect'> */}
+                    {/*     <span>Билеты</span> */}
+                    {/*     <TicketIcon /> */}
+                    {/* </button> */}
                 </div>
                 <ul className='cart__legend'>
                     <li className='cart__legend-item'>свободное место</li>

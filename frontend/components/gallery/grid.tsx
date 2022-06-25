@@ -1,18 +1,23 @@
 import React from 'react';
 import Image from 'next/image';
-import { grid } from '../../shared/dummyData';
 
-const Grid: React.FC = () => {
+type Props = {
+    handleClickImage: (idx: number) => any;
+    gallery: string[];
+};
+
+const Grid: React.FC<Props> = ({ handleClickImage, gallery }) => {
     return (
         <div className='gallery__grid'>
-            {grid.map((path) => (
+            {gallery.map((src, idx) => (
                 <div
                     className='gallery__grid-item'
-                    key={path}
-                    style={{ gridArea: `g${path}` }}
+                    key={src}
+                    style={{ gridArea: `g${idx + 1}` }}
+                    onClick={handleClickImage(idx)}
                 >
                     <Image
-                        src={`/images/grid-${path}.png`}
+                        src={src}
                         width={100}
                         layout='fill'
                         objectFit='cover'

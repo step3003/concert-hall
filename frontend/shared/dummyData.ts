@@ -138,4 +138,7 @@ export const filters = [
 ];
 
 // Gallery Page
-export const grid = Array.from({ length: 12 }, (_, idx) => `${idx + 1}`);
+export const gallery = Array.from(
+    { length: 12 },
+    (_, idx) => `/images/grid-${!idx ? 1 : idx + 1}.png`
+);

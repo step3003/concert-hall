@@ -138,13 +138,17 @@
 .seats {
     display: flex;
     justify-content: center;
-    overflow: auto;
 
     &__items {
         margin-top: 2.5em;
         display: grid;
         grid-template-columns: repeat(12, auto);
         gap: 1.5em;
+
+        @media (max-width: 1366px) {
+            overflow: auto;
+            width: calc(100% - 280px - 2.5em);
+        }
     }
 
     &__item {

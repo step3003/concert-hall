@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { eventApi } from './event/eventApi';
+import { eventApi } from '../features/event/eventApi';
 
 export const store = configureStore({
     reducer: {
@@ -9,3 +9,6 @@ export const store = configureStore({
     //     getDefaultMiddleware().concat(api.middleware),
     // ...options,
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type RootDispatch = typeof store.dispatch;

@@ -12,6 +12,7 @@ const Ticket = ({ imgSrc, title, info, id }: any) => {
                     layout='fill'
                     objectFit='cover'
                     objectPosition='center'
+                    alt='Концертный зал'
                 />
             </div>
             <div className='ticket__content'>

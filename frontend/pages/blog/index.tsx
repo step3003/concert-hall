@@ -34,6 +34,7 @@ export const BlogPage: NextPage = () => {
                                             height={70}
                                             quality={100}
                                             objectFit='cover'
+                                            alt='Блог'
                                         />
                                         <Link
                                             href={{

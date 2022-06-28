@@ -21,6 +21,7 @@ const Grid: React.FC<Props> = ({ handleClickImage, gallery }) => {
                         width={100}
                         layout='fill'
                         objectFit='cover'
+                        alt='Концертный зал'
                     />
                 </div>
             ))}

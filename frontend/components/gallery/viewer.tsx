@@ -43,6 +43,7 @@ const Viewer: React.FC<Props> = ({
                     height={100}
                     layout='responsive'
                     objectFit='cover'
+                    alt='Концертный зал'
                 />
                 <span className='viewer__total'>{total}</span>
             </div>

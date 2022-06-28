@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { Event } from './eventTypes';
+import { IEvent } from './eventTypes';
 
 export const eventApi = createApi({
-    reducerPath: 'api/events',
+    reducerPath: 'event',
     baseQuery: fetchBaseQuery({ baseUrl: process.env.API_URL }),
     endpoints: (build) => ({
-        getEvents: build.query<Event, void>({
+        getEvents: build.query<IEvent[], void>({
             query: () => '/events',
         }),
     }),

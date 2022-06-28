@@ -19,6 +19,7 @@ export const Event = () => {
                         height={70}
                         quality={100}
                         objectFit='cover'
+                        alt='Концертный зал'
                     />
                 </div>
                 <div className='event__about'>

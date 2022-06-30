@@ -18,6 +18,8 @@ class EventResource extends JsonResource
             'duration' => $this->duration,
             'types' => $this->types,
             'price' => $this->price,
+            'instruments' => $this->instruments,
+            'genres' => $this->genres,
             'preview_image' => $this?->previewImage?->getImgProxyUrl('preview'),
         ];
     }

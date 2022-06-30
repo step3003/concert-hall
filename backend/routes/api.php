@@ -6,7 +6,7 @@ use App\API\Controllers\Articles\ArticleTestCreateController;
 use App\API\Controllers\Events\EventsListController;
 use App\API\Controllers\DocumentationController;
 use App\API\Controllers\Events\EventTestCreateController;
-use App\API\Controllers\LoginController;
+use App\API\Controllers\VisitorController;
 use App\API\Controllers\NewsIndexController;
 use App\API\Controllers\NewsStoreController;
 use App\API\Controllers\RegisterController;
@@ -31,7 +31,7 @@ Route::post('upload-image', UploadImageController::class);
 
 Route::prefix('auth')->as('auth.')->group(function () {
     Route::post('register', RegisterController::class)->name('register');
-    Route::post('login', LoginController::class)->name('login');
+    Route::post('login', VisitorController::class)->name('login');
 });
 
 Route::prefix('articles')->as('.articles')->group(function () {

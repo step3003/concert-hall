@@ -25,8 +25,11 @@ class EventTestCreateController extends Controller
     {
         $event = $this->eventRepository->storeEvent($request->all());
 
-        return $this->ok([
-            'data' => EventResource::make($event),
-        ], Response::HTTP_CREATED);
+        return $this->ok(
+            [
+                'data' => EventResource::make($event),
+            ],
+            Response::HTTP_CREATED
+        );
     }
 }

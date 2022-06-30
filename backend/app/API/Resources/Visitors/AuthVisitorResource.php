@@ -1,10 +1,10 @@
 <?php
 
-namespace App\API\Resources\Clients;
+namespace App\API\Resources\Visitors;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AuthClientResource extends JsonResource
+class AuthVisitorResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

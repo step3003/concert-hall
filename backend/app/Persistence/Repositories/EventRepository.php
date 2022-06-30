@@ -7,6 +7,7 @@ use App\Persistence\Models\Article;
 use App\Persistence\Models\Event;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Arr;
 
 class EventRepository
 {
@@ -19,6 +20,10 @@ class EventRepository
 
     public function storeEvent(array $dataEvent): Model
     {
-        return Event::query()->create($dataEvent);
+        $event = Event::query()->create($dataEvent);
+        $event->instruments()->sync(Arr::get($dataEvent, 'instruments'));
+        $event->genres()->sync(Arr::get($dataEvent, 'genres'));
+
+        return $event;
     }
 }

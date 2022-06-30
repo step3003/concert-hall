@@ -4,29 +4,29 @@ namespace App\API\Controllers;
 
 
 use App\API\Requests\LoginRequest;
-use App\API\Resources\Clients\AuthClientResource;
-use App\UseCases\LoginClient\LoginClientUseCase;
+use App\API\Resources\Visitors\AuthVisitorResource;
+use App\UseCases\LoginVisitor\LoginVisitorUseCase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class LoginController extends Controller
+class VisitorController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct(private LoginClientUseCase $loginClientUseCase)
+    public function __construct(private LoginVisitorUseCase $loginVisitorUseCase)
     {
     }
 
     public function __invoke(LoginRequest $request): JsonResponse
     {
-        $authUser = $this->loginClientUseCase->login($request->email());
+        $authUser = $this->loginVisitorUseCase->login($request->email());
 
         return $this->ok(
             [
-                'data' => AuthClientResource::make($authUser->client),
+                'data' => AuthVisitorResource::make($authUser->visitor),
                 'token' => $authUser->createToken()
             ],
             Response::HTTP_OK);

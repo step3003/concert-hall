@@ -4,8 +4,8 @@ namespace App\API\Controllers;
 
 
 use App\API\Requests\RegisterRequest;
-use App\API\Resources\Clients\AuthClientResource;
-use App\UseCases\RegisterClient\RegisterClientUseCase;
+use App\API\Resources\Visitors\AuthVisitorResource;
+use App\UseCases\RegisterVisitor\RegisterVisitorUseCase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,17 +16,17 @@ class RegisterController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct(private RegisterClientUseCase $clientRegisterUseCase)
+    public function __construct(private RegisterVisitorUseCase $registerVisitorUseCase)
     {
     }
 
     public function __invoke(RegisterRequest $request): JsonResponse
     {
-        $authUser = $this->clientRegisterUseCase->register($request->all());
+        $authUser = $this->registerVisitorUseCase->register($request->all());
 
         return $this->ok(
             [
-                'data' => AuthClientResource::make($authUser->client),
+                'data' => AuthVisitorResource::make($authUser->visitor),
                 'token' => $authUser->createToken()
             ],
             Response::HTTP_CREATED);

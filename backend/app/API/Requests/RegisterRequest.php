@@ -30,7 +30,7 @@ class RegisterRequest extends FormRequest
                 'required',
                 'email',
                 'string',
-                'unique:clients',
+                'unique:visitors',
             ],
             'password' => [
                 'string',

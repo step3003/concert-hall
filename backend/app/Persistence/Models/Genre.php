@@ -4,6 +4,7 @@ namespace App\Persistence\Models;
 
 use App\Infrastructure\MediaLibrary\Contracts\HasImgProxyPresets;
 use App\Infrastructure\MediaLibrary\Traits\InteractsWithImgProxy;
+use Database\Factories\GenreFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +26,7 @@ class Genre extends Model implements HasMedia, HasImgProxyPresets
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
+        'name',
     ];
 
     public function previewImage(): MorphOne
@@ -51,5 +52,12 @@ class Genre extends Model implements HasMedia, HasImgProxyPresets
             ->quality(95)
             ->performOnCollections(self::PREVIEW_IMAGE)
             ->extension('jpg');
+    }
+
+
+    /** @return GenreFactory */
+    protected static function newFactory()
+    {
+        return GenreFactory::new();
     }
 }

@@ -4,11 +4,10 @@ namespace App\Persistence\Models;
 
 use App\Infrastructure\MediaLibrary\Contracts\HasImgProxyPresets;
 use App\Infrastructure\MediaLibrary\Traits\InteractsWithImgProxy;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Database\Factories\InstrumentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -25,7 +24,7 @@ class Instrument extends Model implements HasMedia, HasImgProxyPresets
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
+        'name',
     ];
 
     public function previewImage(): MorphOne
@@ -51,5 +50,11 @@ class Instrument extends Model implements HasMedia, HasImgProxyPresets
             ->quality(95)
             ->performOnCollections(self::PREVIEW_IMAGE)
             ->extension('jpg');
+    }
+
+    /** @return InstrumentFactory */
+    protected static function newFactory()
+    {
+        return InstrumentFactory::new();
     }
 }

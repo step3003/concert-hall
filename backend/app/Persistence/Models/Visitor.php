@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Client extends Authenticatable implements HasMedia, HasImgProxyPresets
+class Visitor extends Authenticatable implements HasMedia, HasImgProxyPresets
 {
     public const PROFILE_IMAGE ='profile_image';
 

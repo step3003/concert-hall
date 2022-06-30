@@ -2,24 +2,19 @@
 
 namespace App\Persistence\Repositories;
 
-use App\Persistence\Models\Client;
+use App\Persistence\Models\Visitor;
 
-class ClientRepository
+class VisitorRepository
 {
-    public function createClient(array $dataClient)
+    public function create(array $dataVisitor)
     {
-        return tap(Client::query()->create(
-            $dataClient
+        return tap(Visitor::query()->create(
+            $dataVisitor
         ))->target;
     }
 
-    public function findClientByEmail(string $email)
+    public function findByEmail(string $email)
     {
-        return Client::query()->whereEmail($email)->first();
-    }
-
-    public function isEsistsClientByEmail(string $email)
-    {
-        return Client::query()->whereEmail($email)->exists();
+        return Visitor::query()->whereEmail($email)->first();
     }
 }

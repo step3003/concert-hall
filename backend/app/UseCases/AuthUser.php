@@ -2,16 +2,16 @@
 
 namespace App\UseCases;
 
-use App\Persistence\Models\Client;
+use App\Persistence\Models\Visitor;
 
 class AuthUser
 {
-    public function __construct(public Client $client)
+    public function __construct(public Visitor $visitor)
     {
     }
 
     public function createToken(): string
     {
-        return $this->client->createToken('auth-token')->token->token;
+        return $this->visitor->createToken('auth-token')->token->token;
     }
 }

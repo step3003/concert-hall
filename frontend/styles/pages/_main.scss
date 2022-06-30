@@ -8,12 +8,15 @@
     color: #ffffff;
 
     &__wrapper {
-        margin-top: 24em;
+        display: flex;
+        height: 100%;
+        align-items: center;
+        margin-top: 5em;
     }
 
     &__title {
         font-family: $PD;
-        font-size: 2.2em;
+        font-size: 2em;
         margin-top: 0.2em;
         max-width: 40%;
     }
@@ -145,11 +148,11 @@
         &-title {
             font-family: $PD;
             font-weight: 600;
-            font-size: 1.7rem;
+            font-size: 1.3rem;
         }
 
         &-about {
-            font-size: 1.3rem;
+            font-size: 1rem;
             margin-top: 1.5rem;
         }
     }

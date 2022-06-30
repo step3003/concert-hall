@@ -40,8 +40,8 @@ const Events: NextPage = () => {
             <div className='events'>
                 <div className='events__wrapper'>
                     <div className='events__container container'>
-                        {events.map((path) => (
-                            <Event key={path} />
+                        {events.map(({...props}) => (
+                            <Event key={props.id} {...props} />
                         ))}
                     </div>
                 </div>

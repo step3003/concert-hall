@@ -70,6 +70,7 @@ button {
     left: 0;
     right: 0;
     top: 0;
+    z-index: 2;
 
     &__nav {
         display: flex;
@@ -144,6 +145,7 @@ button {
     max-width: 1440px;
     padding: 0 160px;
     margin: 0 auto;
+    width: 100%;
 
     @media (min-width: 2048px) {
         max-width: 1920px;
@@ -253,6 +255,7 @@ button {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    position: relative;
 }
 
 .icon {
@@ -322,26 +325,16 @@ button {
     transition: all 0.2s ease-in-out;
     overflow: auto;
     padding: 2.5em;
-
-    &__wrapper {
-        background-color: white;
-        opacity: 0;
-        padding: 5em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-        transition: all 0.2s ease-in-out;
-    }
+    z-index: -1;
 
     &--active {
         display: grid;
         z-index: 3;
         place-items: center;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.9);
     }
 
-    &--active &__wrapper {
+    &--active {
         opacity: 1;
     }
 }
@@ -378,6 +371,16 @@ button {
 }
 
 .sign {
+    &__wrapper {
+        background-color: white;
+        padding: 5em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        transition: all 0.2s ease-in-out;
+    }
+
     &__ways {
         margin-top: 5rem;
         font-size: 1.3rem;

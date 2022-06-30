@@ -1,4 +1,6 @@
 .cart {
+    position: relative;
+
     &__wrapper {
         margin-top: 12em;
     }
@@ -7,6 +9,16 @@
         display: flex;
         justify-content: space-between;
         margin-top: 5em;
+        position: relative;
+
+        &-top {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &--choose-seat {
+            flex-direction: column;
+        }
     }
 
     &__subtitle {
@@ -20,6 +32,39 @@
         span {
             font-weight: 600;
             margin-right: 0.7em;
+        }
+    }
+
+    &__legend {
+        display: flex;
+        justify-self: flex-start;
+        margin: 1.5em 0 0 1.7em;
+        gap: 3.2em;
+
+        &-item {
+            position: relative;
+
+            &:nth-child(1):before {
+                background: rgba(173, 131, 101, 0.25);
+            }
+
+            &:nth-child(2):before {
+                background: rgba(60, 60, 60, 0.25);
+            }
+
+            &:nth-child(3):before {
+                background: $brown;
+            }
+        }
+
+        &-item::before {
+            content: '';
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            top: 50%;
+            left: -1.7em;
+            transform: translateY(-50%);
         }
     }
 }
@@ -87,5 +132,142 @@
         &::after {
             width: 16.5px;
         }
+    }
+}
+
+.seats {
+    display: flex;
+    justify-content: center;
+
+    &__items {
+        margin-top: 2.5em;
+        display: grid;
+        grid-template-columns: repeat(12, auto);
+        gap: 1.5em;
+
+        @media (max-width: 1366px) {
+            overflow: auto;
+            width: calc(100% - 280px - 2.5em);
+        }
+    }
+
+    &__item {
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        height: 40px;
+        width: 40px;
+        background: rgba(173, 131, 101, 0.25);
+        transition: all 0.2s ease-out;
+
+        &:nth-child(12n) {
+            break-after: always;
+        }
+
+        &:nth-child(12n + 7) {
+            margin-left: 2.5em;
+        }
+
+        &:hover {
+            background: $brown;
+            color: white;
+        }
+    }
+}
+
+.side-bar {
+    position: absolute;
+    top: 20em;
+    right: 0;
+    border: 1px solid $silver;
+    height: calc(100% - 20em);
+    background: white;
+    width: 280px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        display: flex;
+        padding: 1.5em;
+        border-bottom: 1px solid $silver;
+        position: relative;
+    }
+
+    &__title {
+        font-size: 1.3rem;
+    }
+
+    &__seats {
+        overflow: auto;
+    }
+
+    &__close-btn,
+    &__seat-remove {
+        background: none;
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        right: 1.5em;
+        transform: translateY(-50%);
+
+        &:before,
+        &:after {
+            height: 3px;
+            width: 20px;
+        }
+    }
+
+    &__seat {
+        position: relative;
+        padding: 1.5em;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.2s ease-in-out;
+
+        &:last-child {
+            background: $light-gray;
+        }
+
+        &-remove::after,
+        ::before {
+            height: 1px;
+        }
+
+        &-number {
+            font-weight: 600;
+        }
+
+        &-price {
+            text-transform: uppercase;
+            font-weight: 700;
+            color: $silver;
+        }
+
+        &:hover {
+            background: $light-gray;
+        }
+    }
+
+    &__footer {
+        margin-top: auto;
+        padding: 1.5em;
+
+        &-price {
+            text-transform: uppercase;
+        }
+    }
+
+    &__total-price {
+        font-size: 1.3rem;
+        font-weight: 700;
+
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__pay-btn {
+        margin-top: 1.5em;
+        width: 100%;
     }
 }

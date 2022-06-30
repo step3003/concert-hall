@@ -4,12 +4,12 @@ import Google from '../public/icons/google.svg';
 import Yandex from '../public/icons/yandex.svg';
 import SignUp from './signUp';
 import SignIn from './signIn';
-import cn from 'classnames';
+import Modal from './modal';
 
 type Props = {
-    setIsOpenModal: (val: boolean) => true;
-    setIsSignIn: (val: boolean) => true;
-    setIsSignUp: (val: boolean) => true;
+    setIsOpenModal: (val: boolean) => any;
+    setIsSignIn: (val: boolean) => any;
+    setIsSignUp: (val: boolean) => any;
     isSignIn: boolean;
     isSignUp: boolean;
     isOpenModal: boolean;
@@ -19,13 +19,12 @@ export const Sign: React.FC<Props> = ({
     setIsOpenModal,
     setIsSignIn,
     setIsSignUp,
+    isOpenModal,
     isSignIn,
     isSignUp,
-    isOpenModal,
 }) => {
     function handleCloseBtn() {
         setIsOpenModal(false);
-
         setTimeout(() => {
             setIsSignIn(false);
             setIsSignUp(false);
@@ -44,21 +43,13 @@ export const Sign: React.FC<Props> = ({
         setIsSignUp(true);
     }
 
-    function handleClickOuterModal(e) {
-        const classList = Array.from(e.target.classList);
-        if (classList.includes('modal--active')) {
-            handleCloseBtn();
-        }
-    }
-
     return (
-        <div
-            className={cn('sign modal', {
-                'modal--active': isOpenModal,
-            })}
-            onClick={handleClickOuterModal}
+        <Modal
+            className='sign'
+            isOpenModal={isOpenModal}
+            setIsOpenModal={setIsOpenModal}
         >
-            <div className='modal__wrapper'>
+            <div className='sign__wrapper'>
                 <button
                     className='close-btn'
                     aria-hidden='true'
@@ -85,7 +76,7 @@ export const Sign: React.FC<Props> = ({
                     handleAlreayHadAccountBtn={handleAlreayHadAccountBtn}
                 />
             </div>
-        </div>
+        </Modal>
     );
 };
 

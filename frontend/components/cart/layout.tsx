@@ -1,10 +1,12 @@
 import React from 'react';
+import SideBar from './sideBar';
 
 type Props = {
     children: JSX.Element | JSX.Element[];
+    isMain?: boolean;
 };
 
-export const Layout: React.FC<Props> = ({ children }) => {
+export const Layout: React.FC<Props> = ({ children, isMain }) => {
     return (
         <div className='cart'>
             <div className='cart__wrapper'>
@@ -13,6 +15,7 @@ export const Layout: React.FC<Props> = ({ children }) => {
                     {children}
                 </div>
             </div>
+            {!isMain && <SideBar />}
         </div>
     );
 };

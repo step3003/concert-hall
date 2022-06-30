@@ -1,4 +1,6 @@
 .gallery {
+    z-index: 1;
+
     &__wrapper {
         margin-top: 12em;
     }
@@ -52,5 +54,42 @@
                 background-color: rgba(0, 0, 0, 0.7);
             }
         }
+    }
+}
+
+.viewer {
+    display: flex;
+    align-items: center;
+    gap: 2.5em;
+    justify-content: center;
+
+    &__img {
+        width: 40%;
+    }
+
+    &__prev-btn,
+    &__next-btn {
+        background: none;
+
+        svg path {
+            transition: all 0.2s ease-in-out;
+        }
+
+        &:hover svg path {
+            stroke: white;
+        }
+    }
+
+    &__next-btn {
+        transform: rotate(180deg);
+    }
+
+    &__total {
+        position: absolute;
+        margin-top: 2.5em;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.3rem;
+        color: white;
     }
 }

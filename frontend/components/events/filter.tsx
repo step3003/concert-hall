@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Chevron from '../../public/icons/chevron.svg';
 import { formatDate } from '../../shared/libs/math';
+import type { IFilter } from '../../types/event';
 
-type Props = {
-    title: 'Тип мероприятия' | 'Жанр' | 'Инструмент' | 'Дата';
-    isDate: 'boolean';
-    filters: [
-        {
-            name: 'string';
-            count: 'number';
-            id: 'string';
-        }
-    ];
-};
-
-export const Filter: React.FC<Props> = ({ title, filters }) => {
+export const Filter: React.FC<IFilter> = ({ title, filters }) => {
     const [checked, setChecked] = useState({});
     const [date, setDate] = useState({ from: formatDate(), to: formatDate() });
 

@@ -1,3 +1,5 @@
+import { IEvent } from '../types/event';
+
 // Ticket Page
 export const ticketsWaitingPay = [
     {
@@ -106,7 +108,41 @@ export const posts = [
 ];
 
 // Events Page
-export const events = ['1', '2', '3', '4', '5', '6'];
+export const events: IEvent[] = [
+    {
+        id: 0,
+        title: 'Вольфганг Амадей Моцарт - Реквием',
+        slug: 'test-0',
+        event_date_at: '20/10/2222',
+        duration: '1',
+        preview_image: '/images/event-1.png',
+        description:
+            'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+        price: '25',
+    },
+    {
+        id: 1,
+        title: 'Вольфганг Амадей Моцарт - Реквием',
+        slug: 'test-1',
+        event_date_at: '20/10/2222',
+        duration: '1',
+        preview_image: '/images/event-1.png',
+        description:
+            'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+        price: '15',
+    },
+    {
+        id: 2,
+        title: 'Вольфганг Амадей Моцарт - Реквием',
+        slug: 'test-2',
+        event_date_at: '20/10/2222',
+        duration: '1',
+        preview_image: '/images/event-1.png',
+        description:
+            'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+        price: '10',
+    },
+];
 export const filters = [
     {
         title: 'Тип мероприятия',

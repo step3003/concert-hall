@@ -1,3 +1,13 @@
+interface IInstrument {
+    id: number;
+    name: string;
+}
+
+interface IGener {
+    id: number;
+    name: string;
+}
+
 export interface IEvent {
     id: number;
     title: string;
@@ -9,6 +19,8 @@ export interface IEvent {
     types?: string[];
     price: string;
     preview_image: null | string;
+    instuments: IInstrument[];
+    genres: IGener[];
 }
 
 export interface IFilter {

@@ -56,12 +56,12 @@ export const Event: React.FC<IEvent> = ({
                     <div className='event__price-control'>
                         <p className='event__price'>{price} руб</p>
                         <div className='event__control'>
-                            <button className='event__control-btn btn btn--outline-brown'>
-                                Подробнее
-                            </button>
+                            {/* <button className='event__control-btn btn btn--outline-brown'> */}
+                            {/*     Подробнее */}
+                            {/* </button> */}
                             <Link href='/cart'>
                                 <button
-                                    className='event__control-btn btn'
+                                    className='event__control-btn btn btn--outline-brown'
                                     onClick={handleBuyTicket}
                                 >
                                     Купить билет

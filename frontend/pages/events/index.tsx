@@ -42,7 +42,9 @@ const Events: NextPage = () => {
                         {filters.map(({ ...props }) => (
                             <Filter key={props.name} {...props} />
                         ))}
-                        <p className='events-filter__all'>Всего: 250</p>
+                        <p className='events-filter__all'>
+                            Всего: {events.length}
+                        </p>
                     </div>
                 </div>
             </div>

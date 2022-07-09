@@ -6,9 +6,9 @@ use App\API\Controllers\Articles\ArticleTestCreateController;
 use App\API\Controllers\Events\EventsListController;
 use App\API\Controllers\DocumentationController;
 use App\API\Controllers\Events\EventTestCreateController;
-use App\API\Controllers\Seats\SeatController;
-use App\API\Controllers\VisitorController;
-use App\API\Controllers\RegisterController;
+use App\API\Controllers\Seats\SeatsListAtEventController;
+use App\API\Controllers\LoginVisitorController;
+use App\API\Controllers\RegisterVisitorController;
 use App\API\Controllers\TestAuthController;
 use App\API\Controllers\UploadImageController;
 use App\API\Controllers\Seats\BuySeatController;
@@ -30,8 +30,8 @@ Route::get('/', DocumentationController::class);
 Route::post('upload-image', UploadImageController::class);
 
 Route::prefix('auth')->as('auth.')->group(function () {
-    Route::post('/register', RegisterController::class)->name('register');
-    Route::post('/login', VisitorController::class)->name('login');
+    Route::post('/register', RegisterVisitorController::class)->name('register');
+    Route::post('/login', LoginVisitorController::class)->name('login');
 });
 
 Route::prefix('articles')->as('.articles')->group(function () {
@@ -42,7 +42,7 @@ Route::prefix('articles')->as('.articles')->group(function () {
 
 Route::prefix('events')->as('.events')->group(function () {
     Route::get('/', EventsListController::class);
-    Route::get('/{id}/seats', SeatController::class);
+    Route::get('/{eventId}/seats', SeatsListAtEventController::class);
     Route::post('/test-create', EventTestCreateController::class);
 });
 
@@ -52,8 +52,5 @@ Route::middleware('auth:token')->group(function () {
             Route::post('/buy', BuySeatController::class);
         });
     });
-
-
-    Route::get('/test', TestAuthController::class);
 });
 

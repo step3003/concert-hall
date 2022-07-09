@@ -62,6 +62,16 @@ class Event extends Model implements HasMedia, HasImgProxyPresets
         return $this->belongsToMany(Genre::class, 'genre_event');
     }
 
+    public function seats(): BelongsToMany
+    {
+        return $this->belongsToMany(Seat::class, 'event_seat_visitor');
+    }
+
+    public function visitors(): BelongsToMany
+    {
+        return $this->belongsToMany(Visitor::class, 'event_seat_visitor');
+    }
+
     public function previewImage(): MorphOne
     {
         return $this->morphOne(config('media-library.media_model'), 'model')

@@ -6,12 +6,12 @@ use App\API\Controllers\Articles\ArticleTestCreateController;
 use App\API\Controllers\Events\EventsListController;
 use App\API\Controllers\DocumentationController;
 use App\API\Controllers\Events\EventTestCreateController;
+use App\API\Controllers\Seats\SeatController;
 use App\API\Controllers\VisitorController;
-use App\API\Controllers\NewsIndexController;
-use App\API\Controllers\NewsStoreController;
 use App\API\Controllers\RegisterController;
 use App\API\Controllers\TestAuthController;
 use App\API\Controllers\UploadImageController;
+use App\API\Controllers\Seats\BuySeatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,22 +30,30 @@ Route::get('/', DocumentationController::class);
 Route::post('upload-image', UploadImageController::class);
 
 Route::prefix('auth')->as('auth.')->group(function () {
-    Route::post('register', RegisterController::class)->name('register');
-    Route::post('login', VisitorController::class)->name('login');
+    Route::post('/register', RegisterController::class)->name('register');
+    Route::post('/login', VisitorController::class)->name('login');
 });
 
 Route::prefix('articles')->as('.articles')->group(function () {
     Route::get('/', ArticlesListController::class);
-    Route::get('/{slug}', ArticleController::class);
+    Route::get('/{id}', ArticleController::class);
     Route::post('/test-create', ArticleTestCreateController::class);
 });
 
 Route::prefix('events')->as('.events')->group(function () {
     Route::get('/', EventsListController::class);
+    Route::get('/{id}/seats', SeatController::class);
     Route::post('/test-create', EventTestCreateController::class);
 });
 
 Route::middleware('auth:token')->group(function () {
+    Route::prefix('events')->as('.seats')->group(function () {
+        Route::prefix('seats')->as('.seats')->group(function () {
+            Route::post('/buy', BuySeatController::class);
+        });
+    });
+
+
     Route::get('/test', TestAuthController::class);
 });
 

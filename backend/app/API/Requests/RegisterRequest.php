@@ -33,6 +33,7 @@ class RegisterRequest extends FormRequest
                 'unique:visitors',
             ],
             'password' => [
+                'required',
                 'string',
                 'max:255',
             ],

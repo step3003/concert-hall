@@ -6,23 +6,9 @@ export const formatDate: any = (date = new Date()) => {
     return date.toISOString().split('T')[0];
 };
 
-// export const createHallSide = (
-//     fromSeat: number,
-//     totalRow: number,
-//     seatsInRow: number
-// ) => {
-//     const side = [];
-//
-//     for (
-//         let i = fromSeat >= seatsInRow ? seatsInRow + 1 : fromSeat;
-//         i <= totalRow * seatsInRow;
-//         i++
-//     ) {
-//         side.push(i.toString());
-//         if (!(i % seatsInRow)) {
-//             i += seatsInRow;
-//         }
-//     }
-//
-//     return side;
-// };
+export const convertDate = (stringDate: string): string => {
+    const date = new Date(stringDate).toISOString();
+    const [year, month, day] = date.substring(0, 10).split('-');
+    const time = date.substring(11, 16);
+    return `${day}/${month}/${year} - ${time}`;
+};

@@ -3,9 +3,18 @@ import type { NextPage } from 'next';
 import Search from '../../public/icons/search.svg';
 import Event from '../../components/events/event';
 import Filter from '../../components/events/filter';
-import { filters, events } from '../../shared/dummyData';
+import { filters } from '../../shared/dummyData';
+import { useGetEventsQuery } from '../../features/event/eventApi';
 
 const Events: NextPage = () => {
+    const { data, isLoading } = useGetEventsQuery();
+
+    if (isLoading) {
+        return <h2>Loading..</h2>;
+    }
+
+    const { data: events } = data;
+
     return (
         <>
             <div className='events-main'>
@@ -33,14 +42,16 @@ const Events: NextPage = () => {
                         {filters.map(({ ...props }) => (
                             <Filter key={props.name} {...props} />
                         ))}
-                        <p className='events-filter__all'>Всего: 250</p>
+                        <p className='events-filter__all'>
+                            Всего: {events.length}
+                        </p>
                     </div>
                 </div>
             </div>
             <div className='events'>
                 <div className='events__wrapper'>
                     <div className='events__container container'>
-                        {events.map(({...props}) => (
+                        {events.map(({ ...props }) => (
                             <Event key={props.id} {...props} />
                         ))}
                     </div>

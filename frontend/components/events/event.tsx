@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../app/hooks';
 import { addTicket } from '../../features/user/userSlice';
 import { IEvent } from '../../types/event';
 import Link from 'next/link';
+import { convertDate } from '../../shared/libs/math';
 
 export const Event: React.FC<IEvent> = ({
     id,
@@ -36,7 +37,7 @@ export const Event: React.FC<IEvent> = ({
         <div className='event'>
             <div className='event__title-date'>
                 <h3 className='event__title'>{title}</h3>
-                <p className='event__date'>{event_date_at}</p>
+                <p className='event__date'>{convertDate(event_date_at)}</p>
             </div>
             <div className='event__image-about'>
                 <div className='event__image-wrapper'>
@@ -55,12 +56,12 @@ export const Event: React.FC<IEvent> = ({
                     <div className='event__price-control'>
                         <p className='event__price'>{price} руб</p>
                         <div className='event__control'>
-                            <button className='event__control-btn btn btn--outline-brown'>
-                                Подробнее
-                            </button>
+                            {/* <button className='event__control-btn btn btn--outline-brown'> */}
+                            {/*     Подробнее */}
+                            {/* </button> */}
                             <Link href='/cart'>
                                 <button
-                                    className='event__control-btn btn'
+                                    className='event__control-btn btn btn--outline-brown'
                                     onClick={handleBuyTicket}
                                 >
                                     Купить билет

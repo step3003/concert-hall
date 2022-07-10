@@ -25,10 +25,8 @@ export const Sign: React.FC<Props> = ({
 }) => {
     function handleCloseBtn() {
         setIsOpenModal(false);
-        setTimeout(() => {
-            setIsSignIn(false);
-            setIsSignUp(false);
-        }, 200);
+        setIsSignIn(false);
+        setIsSignUp(false);
     }
 
     function handleAlreayHadAccountBtn(e) {

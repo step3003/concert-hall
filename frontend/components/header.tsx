@@ -1,4 +1,4 @@
-import React from 'react';
+import React, from 'react';
 import Link from 'next/link';
 import Search from '../public/icons/search.svg';
 import cn from 'classnames';
@@ -23,11 +23,16 @@ const Header: React.FC<Props> = ({
         });
     }
 
-    function handleSign(cb: (val: boolean) => void) {
-        return () => {
-            setIsOpenModal(true);
-            cb(true);
-        };
+    function handleSignIn() {
+      setIsOpenModal(true);
+      setIsSignUp(false);
+      setIsSignIn(true);
+    }
+
+    function handleSignUp() {
+      setIsOpenModal(true);
+      setIsSignIn(false);
+      setIsSignUp(true);
     }
 
     return (
@@ -54,11 +59,11 @@ const Header: React.FC<Props> = ({
                 </button>
                 <button
                     className='header__sign-in-btn'
-                    onClick={handleSign(setIsSignIn)}
+                    onClick={handleSignIn}
                 >
                     Войти
                 </button>
-                <button className='btn' onClick={handleSign(setIsSignUp)}>
+                <button className='btn' onClick={handleSignUp}>
                     Зарегистрироваться
                 </button>
             </div>

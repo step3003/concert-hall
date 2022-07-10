@@ -12,7 +12,16 @@ export interface ITicket {
     };
 }
 
+export interface IUser {
+    id: number;
+    email: string;
+    name: string;
+    last_name: string;
+    token: string;
+}
+
 export interface IUserState {
+    user: IUser | null;
     cart: {
         tickets: ITicket[];
     };

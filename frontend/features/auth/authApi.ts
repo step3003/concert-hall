@@ -1,4 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { setUser } from '../user/userSlice';
+
+// @ts-ignore
+async function onQueryStarted(_, { queryFulfilled, dispatch }) {
+    try {
+        const { data } = await queryFulfilled;
+        const user = { ...data.data, token: data.token };
+        dispatch(setUser(user));
+        localStorage.setItem('user', JSON.stringify(data.data));
+    } catch (err) {}
+}
 
 export const authApi = createApi({
     reducerPath: 'auth',
@@ -13,15 +24,17 @@ export const authApi = createApi({
                 method: 'POST',
                 body: initialRegister,
             }),
+            onQueryStarted,
         }),
-        auth: build.mutation({
+        login: build.mutation({
             query: (initialAuth) => ({
                 url: '/login',
                 method: 'POST',
                 body: initialAuth,
             }),
+            onQueryStarted,
         }),
     }),
 });
 
-export const { useRegisterMutation, useAuthMutation } = authApi;
+export const { useRegisterMutation, useLoginMutation } = authApi;

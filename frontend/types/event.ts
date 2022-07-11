@@ -19,8 +19,8 @@ export interface IEvent {
     types?: string[];
     price: string;
     preview_image: null | string;
-    instuments: IInstrument[];
-    genres: IGener[];
+    instuments: IInstrument[] | null;
+    genres: IGener[] | null;
 }
 
 export interface IFilter {

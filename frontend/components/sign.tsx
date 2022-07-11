@@ -68,10 +68,12 @@ export const Sign: React.FC<Props> = ({
                 <SignIn
                     isSignIn={isSignIn}
                     handleDontHaveAccountBtn={handleDontHaveAccountBtn}
+                    handleCloseBtn={handleCloseBtn}
                 />
                 <SignUp
                     isSignUp={isSignUp}
                     handleAlreayHadAccountBtn={handleAlreayHadAccountBtn}
+                    handleCloseBtn={handleCloseBtn}
                 />
             </div>
         </Modal>

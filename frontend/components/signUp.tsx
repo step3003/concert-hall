@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useRegisterMutation } from '../features/auth/authApi';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IRegister } from '../types/auth';
-import * as yup from 'yup';
 import cn from 'classnames';
+import * as yup from 'yup';
 
 type Props = {
     isSignUp: boolean;
     handleAlreayHadAccountBtn: () => any;
+    handleCloseBtn: () => any;
 };
 
 interface ISignUp extends IRegister {
@@ -28,18 +29,12 @@ const schema = yup.object({
         .oneOf([yup.ref('password'), null], 'пароль не совпадает'),
 });
 
-const SignUp: React.FC<Props> = ({ isSignUp, handleAlreayHadAccountBtn }) => {
-    const [useRegister, result] = useRegisterMutation();
-    const {
-        isLoading,
-        data: { data: user },
-    } = result;
-
-    useEffect(() => {
-        if (!isLoading) {
-            console.log(user);
-        }
-    }, [isLoading]);
+const SignUp: React.FC<Props> = ({
+    isSignUp,
+    handleAlreayHadAccountBtn,
+    handleCloseBtn,
+}) => {
+    const [authRegister] = useRegisterMutation();
 
     const {
         register,
@@ -47,8 +42,9 @@ const SignUp: React.FC<Props> = ({ isSignUp, handleAlreayHadAccountBtn }) => {
         handleSubmit,
     } = useForm<ISignUp>({ resolver: yupResolver(schema) });
 
-    function onSubmit({ passwordConfirm, ...registerData }: ISignUp) {
-        useRegister(registerData);
+    function handleSignUp({ passwordConfirm, ...registerData }: ISignUp) {
+        authRegister(registerData);
+        handleCloseBtn();
     }
 
     return (
@@ -56,7 +52,7 @@ const SignUp: React.FC<Props> = ({ isSignUp, handleAlreayHadAccountBtn }) => {
             className={cn('sign__form', {
                 'sign__form--active': isSignUp,
             })}
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(handleSignUp)}
         >
             <div className='sign__field'>
                 <label htmlFor='firstname' hidden>
@@ -67,7 +63,7 @@ const SignUp: React.FC<Props> = ({ isSignUp, handleAlreayHadAccountBtn }) => {
                     type='text'
                     id='firstname'
                     placeholder='Имя'
-                    {...register('name', { required: true })}
+                    {...register('name')}
                 />
                 <span className='sign__error'>{errors.name?.message}</span>
             </div>
@@ -90,7 +86,7 @@ const SignUp: React.FC<Props> = ({ isSignUp, handleAlreayHadAccountBtn }) => {
                 </label>
                 <input
                     className='sign__input input'
-                    type='email'
+                    type='text'
                     id='email'
                     placeholder='Почта'
                     {...register('email')}

@@ -1,4 +1,6 @@
-import React, from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { resetUser } from '../features/user/userSlice';
 import Link from 'next/link';
 import Search from '../public/icons/search.svg';
 import cn from 'classnames';
@@ -15,7 +17,15 @@ const Header: React.FC<Props> = ({
     setIsSignUp,
     setIsOpenModal,
 }) => {
+    const [isSSR, setIsSSR] = useState(true);
+
+    useEffect(() => {
+        setIsSSR(false);
+    }, []);
+
     const { pathname } = useRouter();
+    const { user } = useAppSelector((state) => state.user);
+    const dispatch = useAppDispatch();
 
     function isLinkActive(path: string) {
         return cn('header__link', {
@@ -24,15 +34,19 @@ const Header: React.FC<Props> = ({
     }
 
     function handleSignIn() {
-      setIsOpenModal(true);
-      setIsSignUp(false);
-      setIsSignIn(true);
+        setIsOpenModal(true);
+        setIsSignUp(false);
+        setIsSignIn(true);
     }
 
     function handleSignUp() {
-      setIsOpenModal(true);
-      setIsSignIn(false);
-      setIsSignUp(true);
+        setIsOpenModal(true);
+        setIsSignIn(false);
+        setIsSignUp(true);
+    }
+
+    function handleLogout() {
+        dispatch(resetUser());
     }
 
     return (
@@ -54,18 +68,29 @@ const Header: React.FC<Props> = ({
                 </Link>
             </nav>
             <div className='header__buttons'>
-                <button className='header__search-btn icon--solid'>
-                    <Search />
-                </button>
-                <button
-                    className='header__sign-in-btn'
-                    onClick={handleSignIn}
-                >
-                    Войти
-                </button>
-                <button className='btn' onClick={handleSignUp}>
-                    Зарегистрироваться
-                </button>
+                {!isSSR && user ? (
+                    <>
+                        <p>{user.name}</p>
+                        <button className='btn' onClick={handleLogout}>
+                            Выйти
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <button className='header__search-btn icon--solid'>
+                            <Search />
+                        </button>
+                        <button
+                            className='header__sign-in-btn'
+                            onClick={handleSignIn}
+                        >
+                            Войти
+                        </button>
+                        <button className='btn' onClick={handleSignUp}>
+                            Зарегистрироваться
+                        </button>
+                    </>
+                )}
             </div>
         </header>
     );

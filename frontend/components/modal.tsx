@@ -1,23 +1,25 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { setIsOpenModal } from '../features/common/commonSlice';
 
 import cn from 'classnames';
 
 type Props = {
     children: JSX.Element | JSX.Element[];
     className?: string;
+    isOpenModal: boolean;
+    closeModal: () => any;
 };
 
-const Modal: React.FC<Props> = ({ children, className: extClassName }) => {
-    const dispatch = useAppDispatch();
-    const { isOpenModal } = useAppSelector((state) => state.common);
-
+const Modal: React.FC<Props> = ({
+    children,
+    className: extClassName,
+    isOpenModal,
+    closeModal,
+}) => {
     function handleClickOuterModal(e: React.MouseEvent<HTMLDivElement>) {
         const div = e.target as HTMLDivElement;
 
         if (Array.from(div.classList).includes('modal--active')) {
-            dispatch(setIsOpenModal(false));
+            closeModal();
         }
     }
 

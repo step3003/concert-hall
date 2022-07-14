@@ -19,7 +19,7 @@ const Search = () => {
                         Поиск
                     </label>
                     <SearchIcon />
-                    <input className='search__input' id='search' />
+                    <input type='text' placeholder='Поиск по сайту...' className='search__input' id='search' />
                 </div>
             </form>
             <button

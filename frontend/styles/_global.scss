@@ -556,10 +556,11 @@ button {
 }
 
 .search {
-    position: absolute;
+    position: fixed;
     z-index: -1;
     height: 100%;
     width: 100%;
+    transition: all 0.2s ease-in-out;
 
     &--active {
         z-index: 3;

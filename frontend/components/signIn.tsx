@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import { useAppDispatch } from '../app/hooks';
 import { signUp, resetSign } from '../features/common/commonSlice';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
@@ -36,7 +36,7 @@ const SignIn = () => {
         dispath(resetSign());
     }
 
-    function handleDontHaveAccountBtn(e) {
+    function handleDontHaveAccountBtn(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
         dispath(signUp());
     }

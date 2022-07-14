@@ -6,12 +6,12 @@ import { gallery } from '../../shared/dummyData';
 
 export const GalleryPage: NextPage = () => {
     const [currentView, setCurrentView] = useState(0);
-    const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+    const [isView, setIsView] = useState(false);
 
     function handleClickImage(idx: number) {
         return () => {
             setCurrentView(idx);
-            setIsOpenModal(true);
+            setIsView(true);
         };
     }
 
@@ -43,8 +43,8 @@ export const GalleryPage: NextPage = () => {
                 </div>
             </div>
             <Viewer
-                isOpenModal={isOpenModal}
-                setIsOpenModal={setIsOpenModal}
+                setIsView={setIsView}
+                isView={isView}
                 currentView={currentView}
                 gallery={gallery}
                 handleNextBtn={handleNextBtn}

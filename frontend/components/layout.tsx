@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import Sign from './sign';

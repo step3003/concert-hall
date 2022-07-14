@@ -8,6 +8,7 @@ import SettingsIcon from '../public/icons/settings.svg';
 import ExitIcon from '../public/icons/exit.svg';
 import cn from 'classnames';
 
+// @ts-ignore
 const MenuBar = ({ user }) => {
     const [isActive, setIsActive] = useState(false);
     const dispatch = useAppDispatch();
@@ -53,7 +54,7 @@ const MenuBar = ({ user }) => {
                 </div>
                 <ul className='menu-bar__list'>
                     {menuList.map(({ Icon, item, link }) => (
-                        <li className='menu-bar__list-item'>
+                        <li className='menu-bar__list-item' key={item}>
                             <a className='menu-bar__list-link' href={link}>
                                 <span className='menu-bar__list-icon'>
                                     <Icon />

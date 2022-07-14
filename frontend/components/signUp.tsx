@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { useAppDispatch } from '../app/hooks';
 import { signIn, resetSign } from '../features/common/commonSlice';
 import { useForm } from 'react-hook-form';
@@ -39,7 +39,7 @@ const SignUp = () => {
         dispath(resetSign());
     }
 
-    function handleAlreayHadAccountBtn(e) {
+    function handleAlreayHadAccountBtn(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
         dispath(signIn());
     }

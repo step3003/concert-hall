@@ -16,10 +16,12 @@ export const Sign = () => {
         dispath(resetSign());
     }
 
-    console.log(isSignIn);
-
     return (
-        <Modal className='sign'>
+        <Modal
+            className='sign'
+            isOpenModal={isSignIn || isSignUp}
+            closeModal={handleCloseBtn}
+        >
             <div className='sign__wrapper'>
                 <button
                     className='close-btn'
@@ -29,8 +31,7 @@ export const Sign = () => {
                     <span className='sr-only'>Закрыть</span>
                 </button>
                 <h3 className='title'>
-                    {isSignIn && 'Войдите в аккаунт'}
-                    {isSignUp && 'Создайте аккаунт'}
+                    {isSignIn ? 'Войдите в аккаунт' : 'Создайте аккаунт'}
                 </h3>
                 <p className='sign__ways'>Войти с помощью</p>
                 <div className='sign__icons'>
@@ -38,8 +39,7 @@ export const Sign = () => {
                     <Yandex />
                 </div>
                 <span className='sign__or'>или</span>
-                {isSignIn && <SignIn />}
-                {isSignUp && <SignUp />}
+                {isSignIn ? <SignIn /> : <SignUp />}
             </div>
         </Modal>
     );

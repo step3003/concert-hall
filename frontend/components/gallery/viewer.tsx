@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Modal from '../modal';
 import ArrowIcon from '../../public/icons/bigArrow.svg';
@@ -6,31 +6,27 @@ import ArrowIcon from '../../public/icons/bigArrow.svg';
 type Props = {
     currentView: number;
     gallery: string[];
-    isOpenModal: boolean;
-    setIsOpenModal: (val: boolean) => any;
+    isView: boolean;
+    setIsView: (val: boolean) => any;
     handleNextBtn: () => any;
     handlePrevBtn: () => any;
 };
 
 const Viewer: React.FC<Props> = ({
-    isOpenModal,
-    setIsOpenModal,
     handleNextBtn,
     handlePrevBtn,
     currentView,
+    setIsView,
+    isView,
     gallery,
 }) => {
     const total = `${currentView + 1} / ${gallery.length}`;
 
-    if (!isOpenModal) {
-        return <></>;
-    }
-
     return (
         <Modal
             className='viewer'
-            isOpenModal={isOpenModal}
-            setIsOpenModal={setIsOpenModal}
+            isOpenModal={isView}
+            closeModal={() => setIsView(false)}
         >
             <button className='viewer__prev-btn' onClick={handlePrevBtn}>
                 <span className='sr-only'>Назад</span>

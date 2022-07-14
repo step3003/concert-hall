@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
+import { useAppDispatch } from '../app/hooks';
+import { signUp, resetSign } from '../features/common/commonSlice';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useLoginMutation } from '../features/auth/authApi';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import cn from 'classnames';
-
-type Props = {
-    isSignIn: boolean;
-    handleDontHaveAccountBtn: () => any;
-    handleCloseBtn: () => any;
-};
+import * as yup from 'yup';
 
 const schema = yup.object({
     email: yup
@@ -25,13 +20,10 @@ interface IAuthForm {
     password: string;
 }
 
-const SignIn: React.FC<Props> = ({
-    isSignIn,
-    handleDontHaveAccountBtn,
-    handleCloseBtn,
-}) => {
+const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [authLogin] = useLoginMutation();
+    const dispath = useAppDispatch();
 
     const {
         register,
@@ -41,16 +33,16 @@ const SignIn: React.FC<Props> = ({
 
     function handleLogin(loginData: IAuthForm) {
         authLogin(loginData);
-        handleCloseBtn();
+        dispath(resetSign());
+    }
+
+    function handleDontHaveAccountBtn(e) {
+        e.preventDefault();
+        dispath(signUp());
     }
 
     return (
-        <form
-            className={cn('sign__form', {
-                'sign__form--active': isSignIn,
-            })}
-            onSubmit={handleSubmit(handleLogin)}
-        >
+        <form className='sign__form' onSubmit={handleSubmit(handleLogin)}>
             <div className='sign__field'>
                 <label htmlFor='email' hidden>
                     Почта

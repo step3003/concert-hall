@@ -1,16 +1,11 @@
 import React from 'react';
+import { useAppDispatch } from '../app/hooks';
+import { signIn, resetSign } from '../features/common/commonSlice';
 import { useForm } from 'react-hook-form';
 import { useRegisterMutation } from '../features/auth/authApi';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IRegister } from '../types/auth';
-import cn from 'classnames';
 import * as yup from 'yup';
-
-type Props = {
-    isSignUp: boolean;
-    handleAlreayHadAccountBtn: () => any;
-    handleCloseBtn: () => any;
-};
 
 interface ISignUp extends IRegister {
     passwordConfirm: string;
@@ -29,12 +24,9 @@ const schema = yup.object({
         .oneOf([yup.ref('password'), null], 'пароль не совпадает'),
 });
 
-const SignUp: React.FC<Props> = ({
-    isSignUp,
-    handleAlreayHadAccountBtn,
-    handleCloseBtn,
-}) => {
+const SignUp = () => {
     const [authRegister] = useRegisterMutation();
+    const dispath = useAppDispatch();
 
     const {
         register,
@@ -44,16 +36,16 @@ const SignUp: React.FC<Props> = ({
 
     function handleSignUp({ passwordConfirm, ...registerData }: ISignUp) {
         authRegister(registerData);
-        handleCloseBtn();
+        dispath(resetSign());
+    }
+
+    function handleAlreayHadAccountBtn(e) {
+        e.preventDefault();
+        dispath(signIn());
     }
 
     return (
-        <form
-            className={cn('sign__form', {
-                'sign__form--active': isSignUp,
-            })}
-            onSubmit={handleSubmit(handleSignUp)}
-        >
+        <form className='sign__form' onSubmit={handleSubmit(handleSignUp)}>
             <div className='sign__field'>
                 <label htmlFor='firstname' hidden>
                     Имя

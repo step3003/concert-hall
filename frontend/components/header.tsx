@@ -1,22 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useAppSelector } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { signIn, signUp, setIsSearch } from '../features/common/commonSlice';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import MenuBar from './menuBar';
 import Search from '../public/icons/search.svg';
 import cn from 'classnames';
 
-type Props = {
-    setIsSignIn: (val: boolean) => void;
-    setIsSignUp: (val: boolean) => void;
-    setIsOpenModal: (val: boolean) => void;
-};
-
-const Header: React.FC<Props> = ({
-    setIsSignIn,
-    setIsSignUp,
-    setIsOpenModal,
-}) => {
+const Header = () => {
     const [isSSR, setIsSSR] = useState(true);
 
     useEffect(() => {
@@ -25,6 +16,7 @@ const Header: React.FC<Props> = ({
 
     const { pathname } = useRouter();
     const { user } = useAppSelector((state) => state.user);
+    const dispatch = useAppDispatch();
 
     function isLinkActive(path: string) {
         return cn('header__link', {
@@ -32,16 +24,16 @@ const Header: React.FC<Props> = ({
         });
     }
 
-    function handleSignIn() {
-        setIsOpenModal(true);
-        setIsSignUp(false);
-        setIsSignIn(true);
+    function handleSignInBtn() {
+        dispatch(signIn());
     }
 
-    function handleSignUp() {
-        setIsOpenModal(true);
-        setIsSignIn(false);
-        setIsSignUp(true);
+    function handleSignUpBtn() {
+        dispatch(signUp());
+    }
+
+    function handleSearchBtn() {
+        dispatch(setIsSearch(true));
     }
 
     return (
@@ -67,16 +59,19 @@ const Header: React.FC<Props> = ({
                     <MenuBar user={user} />
                 ) : (
                     <>
-                        <button className='header__search-btn icon--solid'>
+                        <button
+                            className='header__search-btn icon--solid'
+                            onClick={handleSearchBtn}
+                        >
                             <Search />
                         </button>
                         <button
                             className='header__sign-in-btn'
-                            onClick={handleSignIn}
+                            onClick={handleSignInBtn}
                         >
                             Войти
                         </button>
-                        <button className='btn' onClick={handleSignUp}>
+                        <button className='btn' onClick={handleSignUpBtn}>
                             Зарегистрироваться
                         </button>
                     </>

@@ -1,52 +1,25 @@
 // @ts-nocheck
 import React from 'react';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { resetSign } from '../features/common/commonSlice';
 import Google from '../public/icons/google.svg';
 import Yandex from '../public/icons/yandex.svg';
 import SignUp from './signUp';
 import SignIn from './signIn';
 import Modal from './modal';
 
-type Props = {
-    setIsOpenModal: (val: boolean) => any;
-    setIsSignIn: (val: boolean) => any;
-    setIsSignUp: (val: boolean) => any;
-    isSignIn: boolean;
-    isSignUp: boolean;
-    isOpenModal: boolean;
-};
+export const Sign = () => {
+    const dispath = useAppDispatch();
+    const { isSignIn, isSignUp } = useAppSelector((state) => state.common);
 
-export const Sign: React.FC<Props> = ({
-    setIsOpenModal,
-    setIsSignIn,
-    setIsSignUp,
-    isOpenModal,
-    isSignIn,
-    isSignUp,
-}) => {
     function handleCloseBtn() {
-        setIsOpenModal(false);
-        setIsSignIn(false);
-        setIsSignUp(false);
+        dispath(resetSign());
     }
 
-    function handleAlreayHadAccountBtn(e) {
-        e.preventDefault();
-        setIsSignUp(false);
-        setIsSignIn(true);
-    }
-
-    function handleDontHaveAccountBtn(e) {
-        e.preventDefault();
-        setIsSignIn(false);
-        setIsSignUp(true);
-    }
+    console.log(isSignIn);
 
     return (
-        <Modal
-            className='sign'
-            isOpenModal={isOpenModal}
-            setIsOpenModal={setIsOpenModal}
-        >
+        <Modal className='sign'>
             <div className='sign__wrapper'>
                 <button
                     className='close-btn'
@@ -65,16 +38,8 @@ export const Sign: React.FC<Props> = ({
                     <Yandex />
                 </div>
                 <span className='sign__or'>или</span>
-                <SignIn
-                    isSignIn={isSignIn}
-                    handleDontHaveAccountBtn={handleDontHaveAccountBtn}
-                    handleCloseBtn={handleCloseBtn}
-                />
-                <SignUp
-                    isSignUp={isSignUp}
-                    handleAlreayHadAccountBtn={handleAlreayHadAccountBtn}
-                    handleCloseBtn={handleCloseBtn}
-                />
+                {isSignIn && <SignIn />}
+                {isSignUp && <SignUp />}
             </div>
         </Modal>
     );

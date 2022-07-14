@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { resetUser } from '../features/user/userSlice';
+import { useAppSelector } from '../app/hooks';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
+import MenuBar from './menuBar';
 import Search from '../public/icons/search.svg';
 import cn from 'classnames';
-import { useRouter } from 'next/router';
 
 type Props = {
     setIsSignIn: (val: boolean) => void;
@@ -25,7 +25,6 @@ const Header: React.FC<Props> = ({
 
     const { pathname } = useRouter();
     const { user } = useAppSelector((state) => state.user);
-    const dispatch = useAppDispatch();
 
     function isLinkActive(path: string) {
         return cn('header__link', {
@@ -43,10 +42,6 @@ const Header: React.FC<Props> = ({
         setIsOpenModal(true);
         setIsSignIn(false);
         setIsSignUp(true);
-    }
-
-    function handleLogout() {
-        dispatch(resetUser());
     }
 
     return (
@@ -69,12 +64,7 @@ const Header: React.FC<Props> = ({
             </nav>
             <div className='header__buttons'>
                 {!isSSR && user ? (
-                    <>
-                        <p>{user.name}</p>
-                        <button className='btn' onClick={handleLogout}>
-                            Выйти
-                        </button>
-                    </>
+                    <MenuBar user={user} />
                 ) : (
                     <>
                         <button className='header__search-btn icon--solid'>

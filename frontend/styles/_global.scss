@@ -512,3 +512,58 @@ button {
         opacity: 1;
     }
 }
+
+.menu-bar {
+    position: absolute;
+    right: 0;
+    height: 100%;
+
+    &__wrapper {
+        padding: 2.5em;
+        transition: all 0.2s ease-in;
+        border: 1px solid transparent;
+    }
+
+    &__list {
+        margin-top: 2.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.2em;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.2s ease-in;
+    }
+
+    &__list,
+    &__user {
+        &-link,
+        &-btn {
+            display: flex;
+            align-items: center;
+            gap: 1.2em;
+        }
+
+        &-btn {
+            margin-top: 1.3em;
+        }
+
+        &-icon {
+            display: flex;
+        }
+    }
+
+    &--active {
+        .menu-bar {
+            &__wrapper {
+                background: white;
+                border-color: $silver;
+            }
+
+            &__list {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}

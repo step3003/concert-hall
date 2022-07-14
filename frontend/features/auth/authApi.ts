@@ -8,7 +8,9 @@ async function onQueryStarted(_, { queryFulfilled, dispatch }) {
         const user = { ...data.data, token: data.token };
         dispatch(setUser(user));
         localStorage.setItem('user', JSON.stringify(data.data));
-    } catch (err) {}
+    } catch (err: any) {
+        throw new Error(err);
+    }
 }
 
 export const authApi = createApi({

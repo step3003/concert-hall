@@ -17,13 +17,14 @@ export const Event: React.FC<IEvent> = ({
     preview_image,
 }) => {
     const dispatch = useAppDispatch();
+    const convertedDate = convertDate(event_date_at);
 
     function handleBuyTicket() {
         const ticket = {
             id,
             title,
             description,
-            event_date_at,
+            event_date_at: convertedDate,
             price,
             preview_image,
             isPaid: false,
@@ -37,7 +38,7 @@ export const Event: React.FC<IEvent> = ({
         <div className='event'>
             <div className='event__title-date'>
                 <h3 className='event__title'>{title}</h3>
-                <p className='event__date'>{convertDate(event_date_at)}</p>
+                <p className='event__date'>{convertedDate}</p>
             </div>
             <div className='event__image-about'>
                 <div className='event__image-wrapper'>

@@ -63,6 +63,7 @@ const Header = () => {
                             className='header__search-btn icon--solid'
                             onClick={handleSearchBtn}
                         >
+                            <span className='sr-only'>Поиск</span>
                             <Search />
                         </button>
                         <button

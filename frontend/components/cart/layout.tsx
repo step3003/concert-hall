@@ -1,12 +1,12 @@
 import React from 'react';
-import SideBar from './sideBar';
+import SideBar from './choose-seat/sideBar';
 
 type Props = {
     children: JSX.Element | JSX.Element[];
-    isMain?: boolean;
+    isChooseSeat?: boolean;
 };
 
-export const Layout: React.FC<Props> = ({ children, isMain }) => {
+export const Layout: React.FC<Props> = ({ children, isChooseSeat }) => {
     return (
         <div className='cart'>
             <div className='cart__wrapper'>
@@ -15,7 +15,7 @@ export const Layout: React.FC<Props> = ({ children, isMain }) => {
                     {children}
                 </div>
             </div>
-            {!isMain && <SideBar />}
+            {isChooseSeat && <SideBar />}
         </div>
     );
 };

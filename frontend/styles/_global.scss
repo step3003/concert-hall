@@ -237,8 +237,8 @@ button {
             left: 0;
             background-color: $brown;
             height: 0;
-            z-index: -1;
             transition: all 0.2s ease-in-out;
+            z-index: -1;
         }
     }
 
@@ -345,6 +345,7 @@ button {
     top: 1.5em;
     height: 35px;
     width: 35px;
+    background: none;
 
     &:after,
     &:before {
@@ -522,6 +523,14 @@ button {
         transition: all 0.2s ease-in;
     }
 
+    &__user {
+        display: flex;
+    }
+
+    &__search-btn {
+        margin-right: 1.2em;
+    }
+
     &__list,
     &__user {
         &-link,
@@ -529,14 +538,15 @@ button {
             display: flex;
             align-items: center;
             gap: 1.2em;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                color: $brown;
+            }
         }
 
         &-btn {
             margin-top: 1.3em;
-        }
-
-        &-icon {
-            display: flex;
         }
     }
 

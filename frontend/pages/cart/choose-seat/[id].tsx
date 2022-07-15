@@ -5,7 +5,7 @@ const seats = Array.from({ length: 120 }, (_, idx) => idx + 1);
 
 export const ChooseSeat = () => {
     return (
-        <Layout>
+        <Layout isChooseSeat>
             <div className='cart__header cart__header--choose-seat'>
                 <div className='cart__header-top'>
                     <h4 className='cart__subtitle'>Выбор мест</h4>

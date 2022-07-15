@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../app/hooks';
 import { resetUser } from '../features/user/userSlice';
+import { setIsSearch } from '../features/common/commonSlice';
+import Link from 'next/link';
 import SearchIcon from '../public/icons/search.svg';
 import BookmarkIcon from '../public/icons/bookmark.svg';
 import TicketIcon from '../public/icons/ticket.svg';
@@ -16,20 +18,24 @@ const MenuBar = ({ user }) => {
     const menuList = [
         {
             Icon: BookmarkIcon,
-            item: 'Мои закладки',
+            text: 'Мои закладки',
             link: '#',
         },
         {
             Icon: TicketIcon,
-            item: 'Билеты',
-            link: '#',
+            text: 'Билеты',
+            link: '/cart',
         },
         {
             Icon: SettingsIcon,
-            item: 'Настройки',
-            link: '#',
+            text: 'Настройки',
+            link: '/settings',
         },
     ];
+
+    function handleSearchBtn() {
+        dispatch(setIsSearch(true));
+    }
 
     function handleExitBtn() {
         dispatch(resetUser());
@@ -45,22 +51,28 @@ const MenuBar = ({ user }) => {
                     className='menu-bar__user'
                     onMouseMove={() => setIsActive(true)}
                 >
-                    <a className='menu-bar__user-link' href='#'>
-                        <span className='menu-bar__user-icon'>
-                            <SearchIcon />
-                        </span>
-                        {`${user.name} ${user.last_name}`}
-                    </a>
+                    <button
+                        className='menu-bar__search-btn'
+                        onClick={handleSearchBtn}
+                    >
+                        <SearchIcon />
+                        <span className='sr-only'>Поиск</span>
+                    </button>
+                    <Link href='/settings'>
+                        <a className='menu-bar__user-link'>
+                            {`${user.name} ${user.last_name}`}
+                        </a>
+                    </Link>
                 </div>
                 <ul className='menu-bar__list'>
-                    {menuList.map(({ Icon, item, link }) => (
-                        <li className='menu-bar__list-item' key={item}>
-                            <a className='menu-bar__list-link' href={link}>
-                                <span className='menu-bar__list-icon'>
+                    {menuList.map(({ Icon, text, link }) => (
+                        <li className='menu-bar__list-item' key={text}>
+                            <Link href={link}>
+                                <a className='menu-bar__list-link'>
                                     <Icon />
-                                </span>
-                                {item}
-                            </a>
+                                    {text}
+                                </a>
+                            </Link>
                         </li>
                     ))}
                     <li className='menu-bar__list-item'>
@@ -68,9 +80,7 @@ const MenuBar = ({ user }) => {
                             className='menu-bar__list-btn'
                             onClick={handleExitBtn}
                         >
-                            <span className='menu-bar__list-icon'>
-                                <ExitIcon />
-                            </span>
+                            <ExitIcon />
                             Выйти
                         </button>
                     </li>

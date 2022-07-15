@@ -36,19 +36,20 @@ const Ticket: React.FC<ITicket> = ({
                 <h4 className='ticket__title'>{title}</h4>
                 <div className='ticket__control'>
                     {payInfo && (
-                        <div className='ticket__info'>
-                            <p>Места: {payInfo.places.join(', ')}</p>
-                            <p className='ticket__info-cost'>
-                                Стоимость: {payInfo.cost} <span>руб</span>
-                            </p>
-                            <p>{payInfo.date}</p>
-                        </div>
+                        <>
+                            <div className='ticket__info'>
+                                <p>Места: {payInfo.places.join(', ')}</p>
+                                <p className='ticket__info-cost'>
+                                    Стоимость: {payInfo.cost} <span>руб</span>
+                                </p>
+                                <p>{payInfo.date}</p>
+                            </div>
+                            <Link href={payInfo.pdf} passHref>
+                                <a className='text-underline'>Открыть билет</a>
+                            </Link>
+                        </>
                     )}
-                    {payInfo && (
-                        <Link href={payInfo.pdf} passHref>
-                            <a className='text-underline'>Открыть билет</a>
-                        </Link>
-                    )}
+                    <p>{event_date_at}</p>
                     <Link
                         href={{
                             pathname: '/cart/choose-seat/[id]',

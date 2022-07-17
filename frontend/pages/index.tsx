@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import ArrowRight from '../public/icons/arrow.svg';
 import Image from 'next/image';
+import ButtonIcon from '../components/buttonIcon';
 
 const Home: NextPage = () => {
     return (
@@ -32,10 +33,12 @@ const Home: NextPage = () => {
                             Предстоящие мероприятия
                         </h3>
                         <Link href='/events' passHref>
-                            <a className='up-events__link link-effect'>
-                                <span>Смотреть все мероприятия</span>
-                                <ArrowRight />
-                            </a>
+                            <ButtonIcon
+                                className='up-events__link'
+                                icon={<ArrowRight />}
+                            >
+                                Смотреть все мероприятия
+                            </ButtonIcon>
                         </Link>
 
                         <div className='up-events__events'>

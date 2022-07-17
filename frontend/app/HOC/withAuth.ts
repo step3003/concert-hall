@@ -11,7 +11,7 @@ const withAuth = (Page: NextPage) => (props: any) => {
             return null;
         }
 
-        return <Page {...props} />;
+        // return <Page {...props} />;
     }
 
     return null;

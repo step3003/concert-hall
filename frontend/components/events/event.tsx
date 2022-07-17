@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { addTicket } from '../../features/user/userSlice';
 import { IEvent } from '../../types/event';
 import Link from 'next/link';
@@ -17,6 +17,8 @@ export const Event: React.FC<IEvent> = ({
     preview_image,
 }) => {
     const dispatch = useAppDispatch();
+    const { tickets } = useAppSelector((state) => state.user.cart);
+    const inCart = tickets.find((t) => t.id == id);
     const convertedDate = convertDate(event_date_at);
 
     function handleBuyTicket() {
@@ -36,12 +38,12 @@ export const Event: React.FC<IEvent> = ({
 
     return (
         <div className='event'>
-            <div className='event__title-date'>
+            <div className='event__header'>
                 <h3 className='event__title'>{title}</h3>
                 <p className='event__date'>{convertedDate}</p>
             </div>
-            <div className='event__image-about'>
-                <div className='event__image-wrapper'>
+            <div className='event__about'>
+                <div className='event__image'>
                     <Image
                         src={preview_image ?? '/images/no-img.png'}
                         layout='responsive'
@@ -52,22 +54,27 @@ export const Event: React.FC<IEvent> = ({
                         alt={preview_image ? 'Концертный зал' : 'Нет картинки'}
                     />
                 </div>
-                <div className='event__about'>
-                    <p className='event__desc'>{description}</p>
-                    <div className='event__price-control'>
+                <div className='event__desc'>
+                    <p className='event__desc-text'>{description}</p>
+                    <div className='event__footer'>
                         <p className='event__price'>{price} руб</p>
-                        <div className='event__control'>
-                            {/* <button className='event__control-btn btn btn--outline-brown'> */}
-                            {/*     Подробнее */}
-                            {/* </button> */}
-                            <Link href='/cart'>
-                                <button
-                                    className='event__control-btn btn btn--outline-brown'
-                                    onClick={handleBuyTicket}
-                                >
-                                    Купить билет
-                                </button>
-                            </Link>
+                        <div className='event__btns'>
+                            {inCart ? (
+                                <Link href='/cart'>
+                                    <button className='event__btn btn'>
+                                        В корзину
+                                    </button>
+                                </Link>
+                            ) : (
+                                <Link href='/cart'>
+                                    <button
+                                        className='event__btn btn btn--outline-brown'
+                                        onClick={handleBuyTicket}
+                                    >
+                                        Купить билет
+                                    </button>
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>

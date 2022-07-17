@@ -5,15 +5,10 @@ import Event from '../../components/events/event';
 import Filter from '../../components/events/filter';
 import { filters } from '../../shared/dummyData';
 import { useGetEventsQuery } from '../../features/event/eventApi';
+import EventSkeleton from '../../components/events/eventSkeleton';
 
 const Events: NextPage = () => {
     const { data, isLoading } = useGetEventsQuery();
-
-    if (isLoading) {
-        return <h2>Loading..</h2>;
-    }
-
-    const { data: events } = data;
 
     return (
         <>
@@ -43,7 +38,7 @@ const Events: NextPage = () => {
                             <Filter key={props.name} {...props} />
                         ))}
                         <p className='events-filter__all'>
-                            Всего: {events.length}
+                            Всего: {data?.data.length}
                         </p>
                     </div>
                 </div>
@@ -51,9 +46,13 @@ const Events: NextPage = () => {
             <div className='events'>
                 <div className='events__wrapper'>
                     <div className='events__container container'>
-                        {events.map(({ ...props }) => (
-                            <Event key={props.id} {...props} />
-                        ))}
+                        {isLoading
+                            ? new Array(5)
+                                  .fill('')
+                                  .map((_, idx) => <EventSkeleton key={idx} />)
+                            : data.data.map(({ ...props }) => (
+                                  <Event key={props.id} {...props} />
+                              ))}
                     </div>
                 </div>
             </div>

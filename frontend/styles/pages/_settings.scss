@@ -2,4 +2,35 @@
     &__wrapper {
         margin-top: 12em;
     }
+
+    &__content {
+        display: flex;
+        margin-top: 5em;
+        align-items: center;
+        position: relative;
+    }
+
+    &__image {
+        width: 30%;
+        overflow: hidden;
+    }
+
+    &__user-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        font-size: 1.3rem;
+    }
+
+    &__edit-btn {
+        font-size: 1rem;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        svg path {
+            fill: $brown;
+        }
+    }
 }

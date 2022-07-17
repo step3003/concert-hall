@@ -41,15 +41,8 @@
     }
 
     &__link {
-        display: flex;
-        align-items: center;
         font-size: 1.3rem;
-        font-weight: 600;
         margin-top: 5rem;
-
-        svg {
-            margin-left: 0.5rem;
-        }
     }
 
     &__events {

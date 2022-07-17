@@ -8,3 +8,17 @@
         color: $hover-color;
     }
 }
+
+@mixin skeleton() {
+    display: block;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: $light-gray;
+    }
+    100% {
+        background-color: $silver;
+    }
+}

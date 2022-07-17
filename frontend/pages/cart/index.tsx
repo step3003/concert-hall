@@ -1,14 +1,16 @@
 // @ts-nocheck
 import type { NextPage } from 'next';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector, useAppDispatch, useSSR } from '../../app/hooks';
 import { resetTickets } from '../../features/user/userSlice';
 import Ticket from '../../components/cart/ticket';
 import TrashIcon from '../../public/icons/trash.svg';
 import FilterIcon from '../../public/icons/filter.svg';
 import Layout from '../../components/cart/layout';
 import Empty from '../../components/cart/empty';
+import ButtonIcon from '../../components/buttonIcon';
 
 const Cart: NextPage = () => {
+    const SSR = useSSR();
     const { tickets } = useAppSelector((state) => state.user.cart);
     const ticketsPaid = tickets.filter((t) => t.isPaid);
     const ticketsNotPaid = tickets.filter((t) => !t.isPaid);
@@ -21,17 +23,16 @@ const Cart: NextPage = () => {
 
     return (
         <Layout>
-            {ticketsNotPaid.length ? (
+            {!SSR && ticketsNotPaid.length ? (
                 <>
                     <div className='cart__header'>
                         <h4 className='cart__subtitle'>Ожидают оплаты</h4>
-                        <button
-                            className='cart__control-btn link-effect'
+                        <ButtonIcon
+                            icon={<TrashIcon />}
                             onClick={handleResetCart}
                         >
-                            <span>Очисить корзину</span>
-                            <TrashIcon />
-                        </button>
+                            Очистить корзину
+                        </ButtonIcon>
                     </div>
                     <div className='tickets'>
                         <div className='tickets__wrapper'>
@@ -48,10 +49,9 @@ const Cart: NextPage = () => {
                 <>
                     <div className='cart__header'>
                         <h4 className='cart__subtitle'>Оплаченные билеты</h4>
-                        <button className='cart__control-btn link-effect'>
-                            <span>Сортировать по дате</span>
-                            <FilterIcon />
-                        </button>
+                        <ButtonIcon icon={<FilterIcon />}>
+                            Сортировать по дате
+                        </ButtonIcon>
                     </div>
                     <div className='tickets'>
                         <div className='tickets__wrapper'>

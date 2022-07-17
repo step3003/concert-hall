@@ -139,7 +139,7 @@
 }
 
 .event {
-    &__title-date {
+    &__header {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -156,29 +156,28 @@
         font-weight: 900;
     }
 
-    &__image-about {
+    &__about {
         margin-top: 2.5em;
         display: flex;
         gap: 2.5em;
     }
 
-    &__image-wrapper {
+    &__image {
         height: 100%;
         width: 50%;
     }
 
-    &__about {
+    &__desc {
         width: 50%;
         display: flex;
         flex-direction: column;
+
+        &-text {
+            margin-bottom: 2.5rem;
+        }
     }
 
-    &__desc {
-        font-size: 1rem;
-        margin-bottom: 2.5rem;
-    }
-
-    &__price-control {
+    &__footer {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
@@ -191,8 +190,93 @@
         text-transform: uppercase;
     }
 
-    &__control {
+    &__btns {
         display: flex;
         gap: 1.5em;
+    }
+}
+
+.event-skeleton {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        display: block;
+        width: 30%;
+        height: 1.3em;
+        background: $silver;
+        @include skeleton;
+    }
+
+    &__date {
+        display: block;
+        width: 15%;
+        background: $silver;
+        @include skeleton;
+    }
+
+    &__about {
+        margin-top: 2.5em;
+        display: flex;
+        gap: 2.5em;
+    }
+
+    &__image {
+        height: 100%;
+        width: 50%;
+        position: relative;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            @include skeleton;
+        }
+    }
+
+    &__desc {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2em;
+        width: 50%;
+
+        &-text {
+            @include skeleton;
+            height: 1em;
+
+            &:nth-child(1) {
+                width: 100%;
+            }
+            &:nth-child(2) {
+                width: 80%;
+            }
+            &:nth-child(3) {
+                width: 60%;
+            }
+        }
+    }
+
+    &__footer {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    &__price {
+        width: 10%;
+        height: 1.3em;
+        @include skeleton;
+    }
+
+    &__btn {
+        width: 20%;
+        height: 3em;
+        @include skeleton;
     }
 }

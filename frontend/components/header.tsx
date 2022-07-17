@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
+import React from 'react';
+import { useAppDispatch, useAppSelector, useSSR } from '../app/hooks';
 import { signIn, signUp, setIsSearch } from '../features/common/commonSlice';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -8,12 +8,7 @@ import Search from '../public/icons/search.svg';
 import cn from 'classnames';
 
 const Header = () => {
-    const [isSSR, setIsSSR] = useState(true);
-
-    useEffect(() => {
-        setIsSSR(false);
-    }, []);
-
+    const SSR = useSSR()
     const { pathname } = useRouter();
     const { user } = useAppSelector((state) => state.user);
     const dispatch = useAppDispatch();
@@ -55,7 +50,7 @@ const Header = () => {
                 </Link>
             </nav>
             <div className='header__buttons'>
-                {!isSSR && user ? (
+                {!SSR && user ? (
                     <MenuBar user={user} />
                 ) : (
                     <>
